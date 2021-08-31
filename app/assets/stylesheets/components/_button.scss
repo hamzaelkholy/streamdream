@@ -44,17 +44,17 @@
 }
 
 .btn-back {
-  color: $yellow;
-  background-color: $white;
+  color: $white;
+  background-color: $off-black;
 
   border: 0px;
-  border: 2px solid $yellow;
+  border: 2px solid $off-black;
 
-  &:hover {
-    color: $white;
-    background-color: $yellow;
+  // &:hover {
+  //   color: $white;
+  //   background-color: $yellow;
 
-    border: 0px;
-    border: 2px solid $yellow;
-  }
+  //   border: 0px;
+  //   border: 2px solid $off-black;
+  // }
 }
