@@ -1,0 +1,53 @@
+.form-wrapper {
+  width: 80%;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 60%;
+  padding: 1em;
+}
+
+.form-height {
+  // height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgba($gray, $alpha: 0.1);
+  overflow: hidden;
+
+  margin-top: 70px;
+}
+
+.form-links {
+  padding: 1em;
+  font-family: $body-font;
+  font-size: 0.8em;
+}
+
+.form-inputs {
+  input {
+    border-radius: 10px;
+  }
+}
+
+.form-img {
+  display: flex;
+  flex-direction: wrap;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: $peach;
+  color: $off-black;
+  width: 40%;
+  height: inherit;
+}
