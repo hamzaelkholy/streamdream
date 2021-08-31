@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row">
+    <%= simple_form_for [@recommendation, @recommendation_movies] do |f| %>
+      <%= f.input :movie %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
