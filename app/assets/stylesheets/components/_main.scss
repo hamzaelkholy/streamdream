@@ -1,0 +1,40 @@
+h1 {
+  font-family: $headers-font;
+  font-size: 3rem;
+  font-weight: 700;
+
+  color: $black;
+}
+
+h2 {
+  font-family: $headers-font;
+  font-size: 2rem;
+  font-weight: 500;
+
+  color: $black;
+}
+
+h3 {
+  font-family: $headers-font;
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  color: $black;
+}
+
+h4 {
+  font-family: $headers-font;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-style: italic;
+
+  color: $gray;
+}
+
+p {
+  font-family: $body-font;
+  font-size: 1rem;
+  font-weight: 400;
+
+  color: $black;
+}
