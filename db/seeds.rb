@@ -34,7 +34,6 @@ csv_text = open('https://github.com/peetck/IMDB-Top1000-Movies/blob/master/IMDB-
 
 csv = CSV.parse(csv_text, headers: :first_row, liberal_parsing: true)
 
-10.times do
   csv.each do |row|
     movie = Movie.create!(
       title: row['Title'],
@@ -45,10 +44,13 @@ csv = CSV.parse(csv_text, headers: :first_row, liberal_parsing: true)
       rating: row['Rating'].to_i
     )
   end
-end
-50.times do
+
+# csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+# filepath    = 'IMDB-Movie-Data.csv'
+
+CSV.each do |row|
   actor = Actor.create!(
-    name: Faker::Name.name
+    name: row['Actors']
   )
 end
 
