@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row">
     <%= simple_form_for(recommendation_movie) do |f| %>
-      <%= f.association :movie, as: :check_boxes%>
+      <%= f.association :movie,
+                        as: :check_boxes,
+                        collection: Movie.all.sample(10),
+                        input_html: { class: 'hide-checkbox image-card' }
+                        %>
       <%= f.button :submit %>
     <% end %>
   </div>
