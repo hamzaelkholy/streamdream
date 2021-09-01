@@ -11,3 +11,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// adding general scss rules
+.main-container{
+  display: flex;
+  background-color: $off-white;
+  font-family: 'Poppins', sans-serif;
+}
