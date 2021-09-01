@@ -110,7 +110,6 @@ p mert = User.create!(
   password: '123456'
 )
 
-
 p mert_r = Recommendation.create!(user: mert, streaming_service: streaming_services.sample)
 p hamza_r = Recommendation.create!(user: hamza, streaming_service: streaming_services.sample)
 p aaron_r = Recommendation.create!(user: aaron, streaming_service: streaming_services.sample)
@@ -133,6 +132,5 @@ actor_id = Actor.last.id
 actor_id2 = actor_id-50
 
 10.times do
-  MovieActor.create!(movie_id: rand(movie_id2...movie_id),
-  actor_id: rand(actor_id2...actor_id))
+  MovieActor.create!(movie_id: rand(movie_id2...movie_id), actor_id: rand(actor_id2...actor_id))
 end
