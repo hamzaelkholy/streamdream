@@ -34,25 +34,25 @@ filepath = Rails.root.join('lib/IMDB-Movie-Data.csv')
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
 CSV.foreach(filepath, csv_options) do |row|
-    p row
-    p movie = Movie.create!(
-      title: row['Title'],
-      genre: row['Genre'],
-      date_released: row['Year'],
-      director: row['Director'],
-      description: row['Description'],
-      rating: row['Rating'].to_i
-    )
-  end
+  p row
+  p movie = Movie.create!(
+    title: row['Title'],
+    genre: row['Genre'],
+    date_released: row['Year'],
+    director: row['Director'],
+    description: row['Description'],
+    rating: row['Rating'].to_i
+  )
+end
 
 # csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 # filepath    = 'IMDB-Movie-Data.csv'
 
 CSV.foreach(filepath, csv_options) do |row|
-    row['Actors'].split(",").each do |actor|
+  row['Actors'].split(",").each do |actor|
     p Actor.create(
-    name: actor
-  )
+      name: actor
+    )
   end
 end
 
@@ -111,28 +111,28 @@ p mert = User.create!(
 )
 
 
-  p mert_r = Recommendation.create!(user: mert, streaming_service: streaming_services.sample)
-  p hamza_r = Recommendation.create!(user: hamza, streaming_service: streaming_services.sample)
-  p aaron_r = Recommendation.create!(user: aaron, streaming_service: streaming_services.sample)
-  p iliana_r = Recommendation.create!(user: iliana, streaming_service: streaming_services.sample)
+p mert_r = Recommendation.create!(user: mert, streaming_service: streaming_services.sample)
+p hamza_r = Recommendation.create!(user: hamza, streaming_service: streaming_services.sample)
+p aaron_r = Recommendation.create!(user: aaron, streaming_service: streaming_services.sample)
+p iliana_r = Recommendation.create!(user: iliana, streaming_service: streaming_services.sample)
 
 movie_id = Movie.last.id
 movie_id2 = movie_id-100
 
-  p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: mert_r)
-  p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: hamza_r)
-  p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: aaron_r)
-  p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: iliana_r)
+p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: mert_r)
+p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: hamza_r)
+p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: aaron_r)
+p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: iliana_r)
 
-  p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
-  p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
-  p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
-  p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
+p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
+p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
+p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
+p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
 
 actor_id = Actor.last.id
 actor_id2 = actor_id-50
 
 10.times do
   MovieActor.create!(movie_id: rand(movie_id2...movie_id),
-    actor_id: rand(actor_id2...actor_id))
+  actor_id: rand(actor_id2...actor_id))
 end

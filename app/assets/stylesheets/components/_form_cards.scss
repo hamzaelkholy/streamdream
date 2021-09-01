@@ -1,0 +1,18 @@
+.hide-checkbox {
+  position: absolute;
+  transform: scale(0);
+}
+
+.hide-checkbox + label {
+  cursor: pointer;
+}
+
+.hide-checkbox:checked + label {
+  cursor: pointer;
+  border: 1px solid $blue;
+}
+
+.image-card {
+  background-color: $blue;
+  margin: 1rem;
+}
