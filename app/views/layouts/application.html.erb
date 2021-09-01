@@ -4,19 +4,20 @@
     <title>Streamdream</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
-
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%# <div class="main-container"> %>
-      <%= yield %>
-    <%# </div> %>
+
+    
+ 
+    
+
+    <%= yield %>
+
     <%= render "shared/footer" %>
   </body>
 </html>
