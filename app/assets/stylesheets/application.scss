@@ -20,10 +20,11 @@
 }
 
 body {
+  color: $off-black;
   background-color: #f9e1fb;
-  background-image:
-  radial-gradient(at 47% 33%, hsl(53.49, 63%, 82%) 0, transparent 59%),
-  radial-gradient(at 82% 65%, hsl(271.83, 100%, 86%) 0, transparent 55%);
+// background-image:
+//   radial-gradient(at 47% 33%, hsl(53.49, 63%, 82%) 0, transparent 59%),
+//   radial-gradient(at 82% 65%, hsl(271.83, 100%, 86%) 0, transparent 55%);
 }
 
 a{
