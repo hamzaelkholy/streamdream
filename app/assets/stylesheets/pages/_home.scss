@@ -1,22 +1,21 @@
 // Specific CSS for your home-page
-.homepage-container{
+.homepage-container {
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f9e1fb;
   background-image:
   radial-gradient(at 47% 33%, hsl(53.49, 63%, 82%) 0, transparent 59%),
-  radial-gradient(at 82% 65%, hsl(271.83, 100%, 86%) 0, transparent 55%);
 }
 
-.homepage-top-section{
+.homepage-top-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.home-page-title{
+.home-page-title {
   display: flex;
   flex-direction: column;
   padding: 6em;

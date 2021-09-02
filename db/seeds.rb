@@ -1,18 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'faker'
 require 'csv'
-require 'open-uri'
+require "uri"
+require 'json'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
 url = 'https://github.com/peetck/IMDB-Top1000-Movies/blob/master/IMDB-Movie-Data.csv'
+genres = ["action", "fantasy", "sci-fi", "horror", "romantic comedies", "comedies"]
+
 
 puts 'Cleaning the database'
 MovieActor.destroy_all
@@ -26,27 +21,30 @@ User.destroy_all
 
 puts 'Creating the seeds'
 
-genres = ["action", "fantasy", "sci-fi", "horror", "romantic comedies", "comedies"]
-
 puts 'Creating movies...'
 
 filepath = Rails.root.join('lib/IMDB-Movie-Data.csv')
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
 CSV.foreach(filepath, csv_options) do |row|
-  p row
+  # Call omdb API for poster
+  omdb_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_KEY']}&t=#{row['Title']}"
+              .unicode_normalize(:nfkd)
+                .encode('ASCII', replace: '')
+  omdb_api = URI.open(Addressable::URI.parse(omdb_url)).string
+  omdb_json = JSON.parse(omdb_api)
+
+  # Create movie object
   p movie = Movie.create!(
     title: row['Title'],
     genre: row['Genre'],
     date_released: row['Year'],
     director: row['Director'],
     description: row['Description'],
+    poster_url: omdb_json["Poster"],
     rating: row['Rating'].to_i
   )
 end
-
-# csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-# filepath    = 'IMDB-Movie-Data.csv'
 
 CSV.foreach(filepath, csv_options) do |row|
   row['Actors'].split(",").each do |actor|
@@ -116,7 +114,7 @@ p aaron_r = Recommendation.create!(user: aaron, streaming_service: streaming_ser
 p iliana_r = Recommendation.create!(user: iliana, streaming_service: streaming_services.sample)
 
 movie_id = Movie.last.id
-movie_id2 = movie_id-100
+movie_id2 = movie_id - 100
 
 p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: mert_r)
 p RecommendationMovie.create!(movie_id: rand(movie_id2...movie_id), recommendation: hamza_r)
@@ -129,7 +127,7 @@ p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: 
 p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
 
 actor_id = Actor.last.id
-actor_id2 = actor_id-50
+actor_id2 = actor_id - 50
 
 10.times do
   MovieActor.create!(movie_id: rand(movie_id2...movie_id), actor_id: rand(actor_id2...actor_id))
