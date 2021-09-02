@@ -2,10 +2,11 @@ require 'open-uri'
 class RecommendationMoviesController < ApplicationController
   def new
     @recommendation_movie = RecommendationMovie.new
-    @movies_sample = Movie.all.sample(10)
-    @movies_sample.each do |movie|
-      movie.poster_url = 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg'
-    end
+    # if params[:ids].any?
+    #   @movies_sample = params[:results]
+    # else
+    @movies_sample = Movie.all.sample(12)
+    # end
   end
 
   def create
@@ -25,7 +26,9 @@ class RecommendationMoviesController < ApplicationController
         @selected_movies << movie_id.to_i
       end
       find_similar_movies # Private method for finding similar movies
+      session[:results] = @results
       raise
+      redirect_to new_recommendation_movie_path
     end
   end
 
@@ -42,6 +45,33 @@ class RecommendationMoviesController < ApplicationController
       uri = URI.parse(url)
       serialized_search = uri.read
       @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(12 / @selected_movies.length)
+      @results.flatten!
+      create_movie(@results)
+    end
+  end
+
+  def create_movie(results)
+    # Store movie instances
+    @movies = []
+    results.each do |movie|
+      # Call Omdb API for updating movie model
+      omdb_url = "http://www.omdbapi.com/?t=#{movie["Name"]}&apikey=#{ENV['OMDB_KEY']}"
+      .unicode_normalize(:nfkd)
+      .encode('ASCII', replace: '')
+
+      omdb_api = URI.open(omdb_url).string
+      omdb_json = JSON.parse(omdb_api)
+
+      # Create movie object
+      @movies << Movie.create!(
+        title: omdb_json['Title'],
+        genre: omdb_json['Genre'][0],
+        date_released: omdb_json['Year'],
+        director: omdb_json['Director'],
+        description: omdb_json['Plot'],
+        poster_url: omdb_json["Poster"],
+        rating: omdb_json['imdbRating'].to_i
+      )
     end
   end
 end
