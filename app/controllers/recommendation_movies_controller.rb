@@ -9,7 +9,6 @@ class RecommendationMoviesController < ApplicationController
 
   def create
     @recommendation_movie = RecommendationMovie.new(recommendation_movie_params)
-    raise
   end
 
   private
