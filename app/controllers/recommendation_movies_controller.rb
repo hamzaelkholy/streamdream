@@ -25,7 +25,7 @@ class RecommendationMoviesController < ApplicationController
         @selected_movies << movie_id.to_i
       end
       find_similar_movies # Private method for finding similar movies
-      raise
+
     end
   end
 
