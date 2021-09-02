@@ -1,4 +1,8 @@
 require 'open-uri'
+require 'net/http'
+require 'uri'
+require 'json'
+
 class RecommendationMoviesController < ApplicationController
   def new
     @recommendation_movie = RecommendationMovie.new
@@ -10,13 +14,27 @@ class RecommendationMoviesController < ApplicationController
 
   def create
     @recommendation_movie = RecommendationMovie.new(recommendation_movie_params)
-    if params[:recommendation_movie][:movie_id].length > 7
+    @selected_movies = []
+    if params[:recommendation_movie][:movie_id].length > 8
+      @movie_ids = params[:recommendation_movie][:movie_id]
+      @movie_ids.shift
+      @movie_ids.map do |movie_id|
+        @selected_movies << movie_id.to_i
+      end
       # Call the Watchmode api on the movies
+      @selected_movies.each do |movie_id|
+        selected_movie = Movie.find(movie_id)[:title]
+        raise
+        url = "https://api.watchmode.com/v1/#{selected_movie}/345534/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}"
+        uri = URI.parse(url)
+        json = Net::HTTP.get(uri)
+        @result = JSON(json)
+        raise
+      end
       # Which streaming service has the most hits
     else
       # Prompt user to select more
       # Generate new similar movies
-      @selected_movies = []
       @results = []
       @movie_ids = params[:recommendation_movie][:movie_id]
       @movie_ids.shift
@@ -44,4 +62,10 @@ class RecommendationMoviesController < ApplicationController
       @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(12 / @selected_movies.length)
     end
   end
+
+  def selected_movies_int_array
+    # params.require(:recommendation_movie).permit(:movie_id)
+  end
+
+
 end
