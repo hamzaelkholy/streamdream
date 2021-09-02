@@ -52,7 +52,7 @@ class RecommendationMoviesController < ApplicationController
       url = "https://tastedive.com/api/similar?q=#{selected_movie}"
       uri = URI.parse(url)
       serialized_search = uri.read
-      @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(12 / @selected_movies.length)
+      @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(6 / @selected_movies.length)
       @results.flatten!
       create_movie(@results)
     end
@@ -81,5 +81,7 @@ class RecommendationMoviesController < ApplicationController
         rating: omdb_json['imdbRating'].to_i
       )
     end
+    @movies << Movie.all.sample(6)
+    @movies.flatten!
   end
 end
