@@ -2,11 +2,14 @@ require 'open-uri'
 class RecommendationMoviesController < ApplicationController
   def new
     @recommendation_movie = RecommendationMovie.new
-    # if params[:ids].any?
-    #   @movies_sample = params[:results]
-    # else
-    @movies_sample = Movie.all.sample(12)
-    # end
+    if params[:format].nil?
+      @movies_sample = Movie.all.sample(12)
+    else
+      @movies_sample = []
+      params[:format].split('/') do |id|
+        @movies_sample << Movie.find(id)
+      end
+    end
   end
 
   def create
@@ -17,7 +20,9 @@ class RecommendationMoviesController < ApplicationController
     else
       # Prompt user to select more
       # Generate new similar movies
-      @selected_movies = []
+      if params[:ids].nil?
+        @selected_movies = []
+      end
       @results = []
       @movie_ids = params[:recommendation_movie][:movie_id]
       @movie_ids.shift
@@ -26,9 +31,12 @@ class RecommendationMoviesController < ApplicationController
         @selected_movies << movie_id.to_i
       end
       find_similar_movies # Private method for finding similar movies
-      session[:results] = @results
-      raise
-      redirect_to new_recommendation_movie_path
+      movie_ids = []
+      @movies.each do |movie|
+        movie_ids << movie.id
+      end
+      params[:ids] = movie_ids
+      redirect_to new_recommendation_movie_path(params[:ids])
     end
   end
 
