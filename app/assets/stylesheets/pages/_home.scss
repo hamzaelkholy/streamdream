@@ -1,49 +1,51 @@
 // Specific CSS for your home-page
-.homepage-container{
+.homepage-container {
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f9e1fb;
-  background-image:
-  radial-gradient(at 47% 33%, hsl(53.49, 63%, 82%) 0, transparent 59%),
-  radial-gradient(at 82% 65%, hsl(271.83, 100%, 86%) 0, transparent 55%);
-
+  background-image: radial-gradient(
+      at 47% 33%,
+      hsl(53.49, 63%, 82%) 0,
+      transparent 59%
+    ),
+    radial-gradient(at 82% 65%, hsl(271.83, 100%, 86%) 0, transparent 55%);
 
   p {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
-.cards-list{
+.cards-list {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-h1{
+h1 {
   font-size: 48px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.homepage-top-section{
+.homepage-top-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.home-page-title{
+.home-page-title {
   display: flex;
   flex-direction: column;
   padding: 6em;
   // background-color: $off-white;
   p {
     font-size: 15px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
 
-.card-how-to{
+.card-how-to {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -56,19 +58,19 @@ h1{
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   border: solid 1px white;
   border-radius: 50px;
-  h2{
-    font-size:20px;
+  h2 {
+    font-size: 20px;
   }
 }
 
-.card-how-to-content{
+.card-how-to-content {
   display: flex;
-  i{
+  i {
     color: $off-black;
     font-size: 30px;
   }
 }
 
-.card-description{
+.card-description {
   padding-left: 10px;
 }

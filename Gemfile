@@ -32,6 +32,8 @@ gem 'devise'
 
 gem 'simple_form'
 
+gem 'addressable', '~> 2.8'
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
