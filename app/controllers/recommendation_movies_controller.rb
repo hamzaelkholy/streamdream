@@ -39,12 +39,9 @@ class RecommendationMoviesController < ApplicationController
     else
       # Prompt user to select more
       # Generate new similar movies
-<<<<<<< HEAD
-=======
       if params[:ids].nil?
         @selected_movies = []
       end
->>>>>>> master
       @results = []
       @movie_ids = params[:recommendation_movie][:movie_id]
       @movie_ids.shift
