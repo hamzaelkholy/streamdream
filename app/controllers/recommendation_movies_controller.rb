@@ -24,13 +24,7 @@ class RecommendationMoviesController < ApplicationController
       @movie_ids.map do |movie_id|
         @selected_movies << movie_id.to_i
       end
-      @selected_movies.each do |movie_id|
-        selected_movie = Movie.find(movie_id)[:title]
-        url = "https://www.omdbapi.com/?t=#{selected_movie}&apikey=#{ENV['OMDB_API_KEY']}"
-        uri = URI.parse(url)
-        serialized_search = uri.read
-        @results << JSON.parse(serialized_search)["imdbID"]
-      end
+      find_similar_movies # Private method for finding similar movies
       raise
     end
   end
@@ -39,5 +33,15 @@ class RecommendationMoviesController < ApplicationController
 
   def recommendation_movie_params
     # params.require(:recommendation_movie).permit(:movie_id)
+  end
+
+  def find_similar_movies
+    @selected_movies.each do |movie_id|
+      selected_movie = Movie.find(movie_id)[:title]
+      url = "https://tastedive.com/api/similar?q=#{selected_movie}"
+      uri = URI.parse(url)
+      serialized_search = uri.read
+      @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(12 / @selected_movies.length)
+    end
   end
 end
