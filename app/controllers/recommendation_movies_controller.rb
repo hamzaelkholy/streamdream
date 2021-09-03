@@ -36,7 +36,7 @@ class RecommendationMoviesController < ApplicationController
         uri_2 = URI("https://api.watchmode.com/v1/title/#{result_watchmode_search["title_results"][0]["id"]}/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
         json_2 = Net::HTTP.get(uri_2)
         result_watchmode_title = JSON(json_2)
-        print(result_watchmode_title)
+        @stre=result_watchmode_title["networks"])
         raise
       end
       # Which streaming service has the most hits
