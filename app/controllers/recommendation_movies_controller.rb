@@ -21,20 +21,18 @@ class RecommendationMoviesController < ApplicationController
     @recommendation_movie = RecommendationMovie.new(recommendation_movie_params)
     @selected_movies = []
     if params[:recommendation_movie][:movie_id].length > 8
-      @movie_ids = params[:recommendation_movie][:movie_id]
-      @movie_ids.shift
-      @movie_ids.map do |movie_id|
-        @selected_movies << movie_id.to_i
-      end
+      selected_movies_integer_array
       # Call the Watchmode api on the movies
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:title]
         raise
-        url = "https://api.watchmode.com/v1/#{selected_movie}/345534/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}"
-        uri = URI.parse(url)
+        # Call Watchmode API to find the Watchmode id of a title
+        uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=name&search_value=#{movietitle}")
         json = Net::HTTP.get(uri)
-        @result = JSON(json)
+        result = JSON(json)
+        print(result)
         raise
+        # Call Watchmode API using ID to find the streaming service of a
       end
       # Which streaming service has the most hits
     else
@@ -43,13 +41,8 @@ class RecommendationMoviesController < ApplicationController
         @selected_movies = []
       end
       @results = []
-      # Find the movie id's and make them integer
-      @movie_ids = params[:recommendation_movie][:movie_id]
-      @movie_ids.shift
-      # Create array of selected movies
-      @movie_ids.map do |movie_id|
-        @selected_movies << movie_id.to_i
-      end
+      # Find the movie id's and make them integer & Create array of selected movies
+      selected_movies_integer_array
       find_similar_movies # Private method for finding similar movies
       movie_ids = []
       @movies.each do |movie|
@@ -105,9 +98,13 @@ class RecommendationMoviesController < ApplicationController
     @movies.flatten!
   end
 
-  def selected_movies_int_array
-    # params.require(:recommendation_movie).permit(:movie_id)
+  def selected_movies_integer_array
+    @movie_ids = params[:recommendation_movie][:movie_id]
+    @movie_ids.shift
+    @movie_ids.map do |movie_id|
+      @selected_movies << movie_id.to_i
+    end
+    @selected_movies
   end
-
 
 end
