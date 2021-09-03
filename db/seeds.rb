@@ -14,7 +14,6 @@ MovieActor.destroy_all
 Actor.destroy_all
 Availability.destroy_all
 RecommendationMovie.destroy_all
-Recommendation.destroy_all
 Movie.destroy_all
 StreamingService.destroy_all
 User.destroy_all
