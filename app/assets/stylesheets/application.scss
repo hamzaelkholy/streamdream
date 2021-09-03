@@ -13,14 +13,8 @@
 @import "pages/index";
 
 // adding general scss rules
-.main-container {
-  display: flex;
-  background-color: $off-white;
-  font-family: "Poppins", sans-serif;
-}
 
 body {
-  background-color: #f9e1fb;
   background-size: 100% 100%;
   background-position: 0px 0px, 0px 0px;
   background-image: radial-gradient(

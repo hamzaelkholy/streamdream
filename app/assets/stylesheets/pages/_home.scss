@@ -1,14 +1,12 @@
 // Specific CSS for your home-page
-.homepage-container {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  font-family: "Poppins", sans-serif;
+.sd-container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .homepage-top-section {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 80vh;
 }

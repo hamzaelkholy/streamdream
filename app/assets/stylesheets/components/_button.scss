@@ -16,16 +16,16 @@
 }
 
 .btn-primary {
-  color: $blue;
-  background-color: $white;
+  color: $off-white;
+  background-color: $off-black;
 
-  border: 2px solid $blue;
+  border: 2px solid $off-black;
 
   &:hover {
-    color: $white;
-    background-color: $blue;
+    color: $off-black;
+    background-color: transparent;
 
-    border: 2px solid $blue;
+    border: 2px solid $off-black;
   }
 }
 
@@ -44,17 +44,19 @@
 }
 
 .btn-back {
-  color: $white;
-  background-color: $off-black;
+  margin-bottom: 2rem;
+  color: $off-black;
+  font-family: $headers-font;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.3rem;
 
-  border: 0px;
-  border: 2px solid $off-black;
+  border-bottom: 2px solid $off-black;
 
-  // &:hover {
-  //   color: $white;
-  //   background-color: $yellow;
+  position: relative;
 
-  //   border: 0px;
-  //   border: 2px solid $off-black;
-  // }
+  &:hover {
+    color: $blue;
+    border-bottom: 2px solid $blue;
+  }
 }
