@@ -42,6 +42,7 @@ CSV.foreach(filepath, csv_options) do |row|
     director: row['Director'],
     description: row['Description'],
     poster_url: omdb_json["Poster"],
+    imdb_id: omdb_json["imdbID"],
     rating: row['Rating'].to_i
   )
 end
