@@ -8,7 +8,6 @@ csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 url = 'https://github.com/peetck/IMDB-Top1000-Movies/blob/master/IMDB-Movie-Data.csv'
 genres = ["action", "fantasy", "sci-fi", "horror", "romantic comedies", "comedies"]
 
-
 puts 'Cleaning the database'
 MovieActor.destroy_all
 Actor.destroy_all
