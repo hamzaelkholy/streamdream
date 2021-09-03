@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <div data-controller="movies" data-movies-url="<%= movies_sample.map {|movie| { id: movie.id, url: movie.poster_url, title: movie.title} }.to_json %>">
@@ -9,10 +10,13 @@
                         collection_wrapper_tag: 'div',
                         collection_wrapper_class: 'form-wrapper',
                         collection: movies_sample,
-                        input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards" } }
+                        input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards" } },
+                        label: 'Choose your preferences'
                         %>
         <%= f.button :submit %>
+        <%= link_to "Go back", root_path, class: "input btn" %>
       <% end %>
+      <br>
     </div>
   </div>
 </div>

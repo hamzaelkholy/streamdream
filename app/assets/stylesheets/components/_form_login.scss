@@ -1,3 +1,11 @@
+.login-container{
+  align-items: center;
+  padding: 0 !important;
+  margin-top: 25vh;
+  width: 55%;
+  margin-left: 25em;
+}
+
 .form-wrapper {
   width: 80%;
   border-radius: 10px;
@@ -20,11 +28,10 @@
   display: flex;
   flex-wrap: wrap;
 
-  border-radius: 10px;
+  border-radius: 50px;
   box-shadow: 0px 0px 10px 5px rgba($gray, $alpha: 0.1);
   overflow: hidden;
-
-  margin-top: 70px;
+  border: solid 1px white;
 }
 
 .form-links {
@@ -42,12 +49,14 @@
 .form-img {
   display: flex;
   flex-direction: wrap;
-
   align-items: center;
   justify-content: center;
 
-  background-color: $peach;
+  background-color: $off-pink;
   color: $off-black;
+
   width: 40%;
+
   height: inherit;
+  border-radius: 0px 50px 50px 0px;
 }
