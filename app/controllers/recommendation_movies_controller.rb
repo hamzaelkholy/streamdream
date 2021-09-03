@@ -2,6 +2,7 @@ require 'open-uri'
 class RecommendationMoviesController < ApplicationController
   def new
     @recommendation_movie = RecommendationMovie.new
+    # Render form with Data from DB if no params available
     if params[:format].nil?
       @movies_sample = Movie.all.sample(12)
     else
