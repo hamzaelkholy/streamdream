@@ -38,7 +38,7 @@ CSV.foreach(filepath, csv_options) do |row|
   p movie = Movie.create!(
     title: row['Title'],
     genre: row['Genre'],
-    date_released: row['Year'],
+    date_released: row['Year'].to_i,
     director: row['Director'],
     description: row['Description'],
     poster_url: omdb_json["Poster"],
