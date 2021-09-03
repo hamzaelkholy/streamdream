@@ -41,6 +41,9 @@ class RecommendationMoviesController < ApplicationController
         result_watchmode_title["networks"]
       end
       # Which streaming service has the most hits
+      
+      redirect_to results_path
+      
     else
       @results = []
       # Find the movie id's and make them integer
@@ -58,6 +61,9 @@ class RecommendationMoviesController < ApplicationController
       # raise
       redirect_to new_recommendation_movie_path(ids: similar_movies_ids, selected_movies: @selected_movies)
     end
+  end
+
+  def results
   end
 
   private
@@ -109,11 +115,14 @@ class RecommendationMoviesController < ApplicationController
         @movies << Movie.find_by(title: movie["Name"])
       end
     end
+
     # Add 6 random movies
     @movies << Movie.all.sample(6)
     @movies.flatten!
   end
 
+  def show
+    @reccomendation_movies = ReccomendationMovies.find(params[:id]) if params[:id]
   def selected_movies_integer_array
     # @movie_ids = params[:recommendation_movie][:movie_id]
     # @movie_ids.shift
@@ -122,6 +131,7 @@ class RecommendationMoviesController < ApplicationController
       @selected_movies << movie_id.to_i
     end
     @selected_movies
+
   end
 
 end
