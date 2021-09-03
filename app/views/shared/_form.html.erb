@@ -13,6 +13,11 @@
                         input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards" } },
                         label: 'Choose your preferences'
                         %>
+        <% if @selected_movies.present? %>
+          <%= f.input :already_selected,
+                          as: :hidden,
+                          input_html: { value: @selected_movies } %>
+        <% end %>
         <%= f.button :submit %>
         <%= link_to "Go back", root_path, class: "input btn" %>
       <% end %>
