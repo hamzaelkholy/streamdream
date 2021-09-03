@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_093304) do
+ActiveRecord::Schema.define(version: 2021_09_03_090312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,15 +62,6 @@ ActiveRecord::Schema.define(version: 2021_09_01_093304) do
     t.index ["recommendation_id"], name: "index_recommendation_movies_on_recommendation_id"
   end
 
-  create_table "recommendations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "streaming_service_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["streaming_service_id"], name: "index_recommendations_on_streaming_service_id"
-    t.index ["user_id"], name: "index_recommendations_on_user_id"
-  end
-
   create_table "streaming_services", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -97,7 +88,4 @@ ActiveRecord::Schema.define(version: 2021_09_01_093304) do
   add_foreign_key "movie_actors", "actors"
   add_foreign_key "movie_actors", "movies"
   add_foreign_key "recommendation_movies", "movies"
-  add_foreign_key "recommendation_movies", "recommendations"
-  add_foreign_key "recommendations", "streaming_services"
-  add_foreign_key "recommendations", "users"
 end

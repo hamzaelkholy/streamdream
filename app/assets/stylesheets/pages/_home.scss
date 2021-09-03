@@ -5,8 +5,14 @@
   // justify-content: center;
   font-family: "Poppins", sans-serif;
   background-color: #f9e1fb;
-  background-image:
-  radial-gradient(at 47% 33%, hsl(53.49, 63%, 82%) 0, transparent 59%),
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px;
+  background-image: radial-gradient(
+      25% 25% at 77% 41%,
+      #c0e2ecff 0%,
+      #a8cddd00 100%
+    ),
+    linear-gradient(200deg, #fbf9f9 0%, #f4d9cc 100%);
 }
 
 .homepage-top-section {

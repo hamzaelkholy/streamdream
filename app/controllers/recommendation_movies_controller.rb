@@ -2,6 +2,7 @@ require 'open-uri'
 class RecommendationMoviesController < ApplicationController
   def new
     @recommendation_movie = RecommendationMovie.new
+    # Render form with Data from DB if no params available
     if params[:format].nil?
       @movies_sample = Movie.all.sample(12)
     else
@@ -18,15 +19,15 @@ class RecommendationMoviesController < ApplicationController
       # Call the Watchmode api on the movies
       # Which streaming service has the most hits
     else
-      # Prompt user to select more
-      # Generate new similar movies
+      # Don't empty array unless it's new recommendation_movie
       if params[:ids].nil?
         @selected_movies = []
       end
       @results = []
+      # Find the movie id's and make them integer
       @movie_ids = params[:recommendation_movie][:movie_id]
       @movie_ids.shift
-      # Create array of selected movies (with integers)
+      # Create array of selected movies
       @movie_ids.map do |movie_id|
         @selected_movies << movie_id.to_i
       end
