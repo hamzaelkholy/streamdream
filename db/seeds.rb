@@ -8,7 +8,6 @@ csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 url = 'https://github.com/peetck/IMDB-Top1000-Movies/blob/master/IMDB-Movie-Data.csv'
 genres = ["action", "fantasy", "sci-fi", "horror", "romantic comedies", "comedies"]
 
-
 puts 'Cleaning the database'
 MovieActor.destroy_all
 Actor.destroy_all
@@ -29,7 +28,7 @@ CSV.foreach(filepath, csv_options) do |row|
   # Call omdb API for poster
   omdb_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_KEY']}&t=#{row['Title']}"
               .unicode_normalize(:nfkd)
-              .encode('ASCII', replace: '')
+                .encode('ASCII', replace: '')
   omdb_api = URI.open(Addressable::URI.parse(omdb_url)).string
   omdb_json = JSON.parse(omdb_api)
 
@@ -110,6 +109,7 @@ p mert = User.create!(
 
 movie_id = Movie.last.id
 movie_id2 = movie_id - 100
+<<<<<<< HEAD
 
 p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
 p Availability.create!(movie_id: rand(movie_id2...movie_id), streaming_service: streaming_services.sample)
@@ -122,3 +122,5 @@ actor_id2 = actor_id - 50
 10.times do
   MovieActor.create!(movie_id: rand(movie_id2...movie_id), actor_id: rand(actor_id2...actor_id))
 end
+=======
+>>>>>>> 4561e346e8b2bea2b49b22164d16ee259dd60828
