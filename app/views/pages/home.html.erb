@@ -1,50 +1,51 @@
 <div class="homepage-container">
-  <div class="homepage-top-section row">
-    <div class="home-page-title col-6">
-      <h1>Streaming <br> service <br> selection <br> made easy</h1>
+  <div class="homepage-top-section">
+    <div class="homepage-title">
+      <h1>Streaming <br>
+        service <br>
+        selection <br>
+        made easy</h1>
       <p>Find your best streaming service based on your budget easily <br>
-      building the best recommendations individually.</h2>
+        building the best recommendations individually.</h2>
       <div class="action-button">
-      <%= link_to "Get Started", new_recommendation_movie_path, class: "btn btn-back"%>
+        <%= link_to "Get Started", new_recommendation_movie_path, class: "btn btn-back"%>
       </div>
     </div>
-    <div class="homepage-illustration col-6">
-      <%= image_tag "streamdream_illustration_v1.png", alt: "streamdream-img", height: 500 %>
-    </div>
+    <%= image_tag "streamdream_illustration_v1.png", alt: "streamdream-img", class: 'homepage-illustration' %>
   </div>
-
   <div class="card-how-to">
     <div class="card-how-to-content">
       <div class="illustration-1">
         <i class="fas fa-video fa-4x"></i>
       </div>
-
       <div class="card-description">
         <h3> Choose your preferences! </h3>
-        <p>Choose any genre of movie you want; <br> Action, drama, horror, sci-fi<br>and many more!</p>
+        <p>Choose any genre of movie you want; <br>
+          Action, drama, horror, sci-fi<br>
+          and many more!</p>
       </div>
     </div>
-
     <div class="card-how-to-content">
       <div class="illustration-2">
         <i class="fas fa-video fa-4x"></i>
       </div>
       <div class="card-description">
         <h3> Find your new service </h3>
-        <p>Depending on your genre choice, our<br>service will show you your optimal <br> streaming service.</p>
+        <p>Depending on your genre choice, our<br>
+          service will show you your optimal <br>
+          streaming service.</p>
       </div>
     </div>
-
     <div class="card-how-to-content">
       <div class="illustration-3">
         <i class="fas fa-video fa-4x"></i>
       </div>
       <div class="card-description">
         <h3> Enjoy your new streaming home! </h3>
-        <p>With your optimal streaming service set, <br> you can now enjoy your new <br> streaming home!</p>
+        <p>With your optimal streaming service set, <br>
+          you can now enjoy your new <br>
+          streaming home!</p>
       </div>
     </div>
   </div>
-<br>
-<%= render "shared/footer" %>
 </div>

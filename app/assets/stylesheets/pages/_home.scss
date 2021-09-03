@@ -4,25 +4,21 @@
   // flex-direction: column;
   // justify-content: center;
   font-family: "Poppins", sans-serif;
-  background-color: #f9e1fb;
-  background-size: 100% 100%;
-  background-position: 0px 0px, 0px 0px;
-  background-image: radial-gradient(
-      25% 25% at 77% 41%,
-      #c0e2ecff 0%,
-      #a8cddd00 100%
-    ),
-    linear-gradient(200deg, #fbf9f9 0%, #f4d9cc 100%);
 }
 
 .homepage-top-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  height: 80vh;
 }
 
-.home-page-title {
+.homepage-title {
   display: flex;
   flex-direction: column;
-  padding: 8em;
+}
+
+.homepage-illustration {
+  width: 50%;
+  height: auto;
 }

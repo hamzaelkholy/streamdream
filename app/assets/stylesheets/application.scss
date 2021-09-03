@@ -13,28 +13,30 @@
 @import "pages/index";
 
 // adding general scss rules
-.main-container{
+.main-container {
   display: flex;
   background-color: $off-white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  color: $off-black;
   background-color: #f9e1fb;
-  min-height: 100vh;
-  background-image:
-    radial-gradient(at 47% 33%, hsl(53.49, 63%, 82%) 0, transparent 59%),
-    radial-gradient(at 82% 65%, hsl(271.83, 100%, 86%) 0, transparent 55%);
-  overflow-x: hidden;
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px;
+  background-image: radial-gradient(
+      25% 25% at 77% 41%,
+      #c0e2ecff 0%,
+      #a8cddd00 100%
+    ),
+    linear-gradient(200deg, #fbf9f9 0%, #f4d9cc 100%);
 }
 
-a{
+a {
   text-decoration: none;
   color: rgb(20, 20, 20);
 }
 
-a:hover{
-    text-decoration: none;
-    color: #3e4b5e;
-  }
+a:hover {
+  text-decoration: none;
+  color: #3e4b5e;
+}
