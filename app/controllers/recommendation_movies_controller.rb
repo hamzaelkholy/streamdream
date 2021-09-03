@@ -63,24 +63,29 @@ class RecommendationMoviesController < ApplicationController
     # Store movie instances
     @movies = []
     results.each do |movie|
-      # Call Omdb API for updating movie model
-      omdb_url = "http://www.omdbapi.com/?t=#{movie["Name"]}&apikey=#{ENV['OMDB_KEY']}"
-      .unicode_normalize(:nfkd)
-      .encode('ASCII', replace: '')
+      # Check if movie is in DB
+      if Movie.find_by(title: movie["Name"]).nil?
+        # Call Omdb API for updating movie model
+        omdb_url = "http://www.omdbapi.com/?t=#{movie["Name"]}&apikey=#{ENV['OMDB_KEY']}"
+        .unicode_normalize(:nfkd)
+        .encode('ASCII', replace: '')
 
-      omdb_api = URI.open(omdb_url).string
-      omdb_json = JSON.parse(omdb_api)
+        omdb_api = URI.open(omdb_url).string
+        omdb_json = JSON.parse(omdb_api)
 
-      # Create movie object
-      @movies << Movie.create!(
-        title: omdb_json['Title'],
-        genre: omdb_json['Genre'][0],
-        date_released: omdb_json['Year'],
-        director: omdb_json['Director'],
-        description: omdb_json['Plot'],
-        poster_url: omdb_json["Poster"],
-        rating: omdb_json['imdbRating'].to_i
-      )
+        # Create movie object
+        @movies << Movie.create!(
+          title: omdb_json['Title'],
+          genre: omdb_json['Genre'][0],
+          date_released: omdb_json['Year'],
+          director: omdb_json['Director'],
+          description: omdb_json['Plot'],
+          poster_url: omdb_json["Poster"],
+          rating: omdb_json['imdbRating'].to_i
+        )
+      else
+        @movies << Movie.find_by(title: movie["Name"])
+      end
     end
     @movies << Movie.all.sample(6)
     @movies.flatten!
