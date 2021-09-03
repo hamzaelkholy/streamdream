@@ -25,10 +25,12 @@ class RecommendationMoviesController < ApplicationController
 
     if @selected_movies.length > 7
       # Call the Watchmode api on the movies
+      @selected_movies.shift
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a title
-        uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=name&search_value=#{selected_movie}")
+        uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
+
         json = Net::HTTP.get(uri)
         result_watchmode_search = JSON(json)
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
@@ -100,6 +102,7 @@ class RecommendationMoviesController < ApplicationController
           director: omdb_json['Director'],
           description: omdb_json['Plot'],
           poster_url: omdb_json["Poster"],
+          imdb_id: omdb_json["imdbID"],
           rating: omdb_json['imdbRating'].to_i
         )
       else
@@ -112,8 +115,9 @@ class RecommendationMoviesController < ApplicationController
   end
 
   def selected_movies_integer_array
-    @movie_ids = params[:recommendation_movie][:movie_id]
-    @movie_ids.shift
+    # @movie_ids = params[:recommendation_movie][:movie_id]
+    # @movie_ids.shift
+    @selected_movies.shift
     @movie_ids.map do |movie_id|
       @selected_movies << movie_id.to_i
     end
