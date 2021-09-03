@@ -26,7 +26,7 @@ class RecommendationMoviesController < ApplicationController
     if @selected_movies.length > 7
       # Call the Watchmode api on the movies
       @selected_movies.each do |movie_id|
-        selected_movie = Movie.find(movie_id)[:title]
+        selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a title
         uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=name&search_value=#{selected_movie}")
         json = Net::HTTP.get(uri)
