@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
   delete 'dashboard', to: 'pages#destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :recommendation_movies, only: [:new, :create]
+  resources :recommendation_movies, only: [:new, :create, :show]
   resources :movies, only: [:show]
 end
