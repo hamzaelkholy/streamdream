@@ -11,6 +11,11 @@
                         collection: movies_sample,
                         input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards" } }
                         %>
+        <% if @selected_movies.present? %>
+          <%= f.input :already_selected,
+                          as: :hidden,
+                          input_html: { value: @selected_movies } %>
+        <% end %>
         <%= f.button :submit %>
       <% end %>
     </div>
