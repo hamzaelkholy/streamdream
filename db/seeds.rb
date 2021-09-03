@@ -29,7 +29,7 @@ CSV.foreach(filepath, csv_options) do |row|
   # Call omdb API for poster
   omdb_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_KEY']}&t=#{row['Title']}"
               .unicode_normalize(:nfkd)
-                .encode('ASCII', replace: '')
+              .encode('ASCII', replace: '')
   omdb_api = URI.open(Addressable::URI.parse(omdb_url)).string
   omdb_json = JSON.parse(omdb_api)
 
@@ -41,6 +41,7 @@ CSV.foreach(filepath, csv_options) do |row|
     director: row['Director'],
     description: row['Description'],
     poster_url: omdb_json["Poster"],
+    imdb_id: omdb_json["imdbID"],
     rating: row['Rating'].to_i
   )
 end
