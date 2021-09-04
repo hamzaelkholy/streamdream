@@ -14,6 +14,12 @@
 .homepage-title {
   display: flex;
   flex-direction: column;
+
+  strong {
+    background: linear-gradient(45deg, $blue, #e4aef2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .homepage-illustration {
