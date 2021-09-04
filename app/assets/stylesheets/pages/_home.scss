@@ -20,3 +20,16 @@
   width: 50%;
   height: auto;
 }
+
+.homepage-how-to {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
+  margin: 2rem;
+
+  i {
+    color: $off-black;
+    font-size: 30px;
+  }
+}

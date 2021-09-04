@@ -1,9 +1,11 @@
 <div class="sd-container">
   <div class="selection-container">
     <h1>Select your preferred movies</h1>
-    <div class="selection-form-wrapper">
+    <div class="glass-container">
       <%= render 'shared/form', recommendation_movie: @recommendation_movie, movies_sample: @movies_sample %>
-      <%= link_to "Back", root_path, class: "btn-back" %>
+      <%= link_to root_path do %>
+        <i class="fas fa-angle-double-left fa-3x btn-back"></i>
+      <% end %>
     </div>
   </div>
 </div>

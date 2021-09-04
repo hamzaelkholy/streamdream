@@ -44,19 +44,10 @@
 }
 
 .btn-back {
-  margin-bottom: 2rem;
-  color: $off-black;
-  font-family: $headers-font;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-
-  border-bottom: 2px solid $off-black;
-
-  position: relative;
+  position: fixed;
+  top: 25%;
 
   &:hover {
     color: $blue;
-    border-bottom: 2px solid $blue;
   }
 }

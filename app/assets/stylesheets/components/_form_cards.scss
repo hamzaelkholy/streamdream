@@ -4,7 +4,7 @@
 //   radial-gradient(at 100% 90%, hsl(271.83, 85%, 87%) 0, transparent 80%);
 // }
 
-.container{
+.container {
   text-align: center;
   width: 100%;
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
@@ -26,7 +26,14 @@
 
 .hide-checkbox:checked + label {
   cursor: pointer;
-  border: 1px solid $pink;
+  border-radius: 10px;
+  outline: 5px solid $blue;
+}
+
+.hide-checkbox:hover + label {
+  cursor: pointer;
+  border-radius: 10px;
+  border: 3px solid $blue;
 }
 
 .form-wrapper {
@@ -37,8 +44,14 @@
 
 .image-card {
   background-color: $blue;
-  height: 230px;
-  width: 200px;
+  height: 370px;
+  width: 250px;
   margin: 1rem;
   border-radius: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
