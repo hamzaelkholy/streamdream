@@ -15,10 +15,22 @@
   display: flex;
   flex-direction: column;
 
-  strong {
-    background: linear-gradient(45deg, $blue, #e4aef2);
+  h1 {
+    animation: animateBg 4s linear infinite;
+    background-image: linear-gradient(45deg, $blue, $pink, $blue, $pink);
+    background-size: 300% 100%;
+    // height: 100vh;
+    // width: 100vw;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  @keyframes animateBg {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
   }
 }
 
