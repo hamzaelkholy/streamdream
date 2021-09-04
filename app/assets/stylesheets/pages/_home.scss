@@ -27,9 +27,13 @@
   justify-content: space-around;
   padding: 2rem;
   margin: 2rem;
+}
 
+.homepage-content {
+  display: flex;
   i {
     color: $off-black;
-    font-size: 30px;
+    font-size: 2rem;
+    padding-right: 0.8rem;
   }
 }

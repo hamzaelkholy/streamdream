@@ -4,3 +4,20 @@
   flex-direction: column;
   align-items: center;
 }
+
+.form-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  legend {
+    display: none;
+  }
+}
