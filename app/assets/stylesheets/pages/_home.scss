@@ -1,28 +1,57 @@
 // Specific CSS for your home-page
-.homepage-container {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  font-family: "Poppins", sans-serif;
-  background-color: #f9e1fb;
-  background-size: 100% 100%;
-  background-position: 0px 0px, 0px 0px;
-  background-image: radial-gradient(
-      25% 25% at 77% 41%,
-      #c0e2ecff 0%,
-      #a8cddd00 100%
-    ),
-    linear-gradient(200deg, #fbf9f9 0%, #f4d9cc 100%);
+.sd-container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .homepage-top-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80vh;
 }
 
-.home-page-title {
+.homepage-title {
   display: flex;
   flex-direction: column;
-  padding: 8em;
+
+  h1 {
+    animation: animateBg 4s linear infinite;
+    background-image: linear-gradient(45deg, $blue, $pink, $blue, $pink);
+    background-size: 300% 100%;
+    // height: 100vh;
+    // width: 100vw;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes animateBg {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+}
+
+.homepage-illustration {
+  width: 50%;
+  height: auto;
+}
+
+.homepage-how-to {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
+  margin: 2rem;
+}
+
+.homepage-content {
+  display: flex;
+  i {
+    color: $off-black;
+    font-size: 2rem;
+    padding-right: 0.8rem;
+  }
 }

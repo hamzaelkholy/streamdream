@@ -25,26 +25,24 @@ class RecommendationMoviesController < ApplicationController
 
     if @selected_movies.length > 7
       # Call the Watchmode api on the movies
-      # @selected_movies.shift
-      # @selected_movies.each do |movie_id|
-      #   selected_movie = Movie.find(movie_id)[:imdb_id]
-      #   # Call Watchmode API to find the Watchmode id of a title
-      #   uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
+      @selected_movies.shift
+      @selected_movies.each do |movie_id|
+        selected_movie = Movie.find(movie_id)[:imdb_id]
+        # Call Watchmode API to find the Watchmode id of a title
+        uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
 
-      #   json = Net::HTTP.get(uri)
-      #   result_watchmode_search = JSON(json)
-      #   # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
-      #   # Call Watchmode API using ID to find the streaming service of a
-      #   uri_2 = URI("https://api.watchmode.com/v1/title/#{result_watchmode_search["title_results"][0]["id"]}/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
-      #   json_2 = Net::HTTP.get(uri_2)
-      #   result_watchmode_title = JSON(json_2)
-      #   result_watchmode_title["networks"]
-
-      #   # Create recommendation_movie instance and redirect to result (show page)
-      # end
-      @recommendation_movie = RecommendationMovie.new(network: 'netflix')
-      redirect_to results_path
+        json = Net::HTTP.get(uri)
+        result_watchmode_search = JSON(json)
+        # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
+        # Call Watchmode API using ID to find the streaming service of a
+        uri_2 = URI("https://api.watchmode.com/v1/title/#{result_watchmode_search["title_results"][0]["id"]}/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
+        json_2 = Net::HTTP.get(uri_2)
+        result_watchmode_title = JSON(json_2)
+        result_watchmode_title["networks"]
+      end
       # Which streaming service has the most hits
+
+      redirect_to results_path
     else
       @results = []
       # Find the movie id's and make them integer
@@ -118,6 +116,10 @@ class RecommendationMoviesController < ApplicationController
     @movies.flatten!
   end
 
+  def show
+    @reccomendation_movies = ReccomendationMovies.find(params[:id]) if params[:id]
+  end
+
   def selected_movies_integer_array
     # @movie_ids = params[:recommendation_movie][:movie_id]
     # @movie_ids.shift
@@ -127,5 +129,4 @@ class RecommendationMoviesController < ApplicationController
     end
     @selected_movies
   end
-
 end

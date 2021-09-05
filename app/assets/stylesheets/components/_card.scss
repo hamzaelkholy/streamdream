@@ -5,27 +5,23 @@
 //   width: 100%;
 // }
 
-.card-how-to{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 6em;
-  margin: 20px 100px;
-  padding: 32px 24px;
+.glass-container {
   background-color: rgba(251, 249, 249, 0.3);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   border: solid 1px white;
   border-radius: 50px;
 }
 
-.card-how-to-content{
-  display: flex;
-  i{
-    color: $off-black;
-    font-size: 30px;
-  }
-}
+// Refactored classes to homepage classes
 
-.card-description{
-  padding-left: 10px;
-}
+// .card-how-to-content {
+//   display: flex;
+//   i {
+//     color: $off-black;
+//     font-size: 30px;
+//   }
+// }
+
+// .card-description {
+//   padding-left: 10px;
+// }

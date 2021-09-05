@@ -1,2 +1,9 @@
-<h1>Pick a Movie!</h1>
-<%= render 'shared/form', recommendation_movie: @recommendation_movie, movies_sample: @movies_sample %>
+<div class="sd-container">
+  <div class="selection-container">
+    <h1>Select your preferred movies</h1>
+    <%= link_to root_path do %>
+      <i class="fas fa-angle-double-left fa-3x btn-back"></i>
+    <% end %>
+    <%= render 'shared/form', recommendation_movie: @recommendation_movie, movies_sample: @movies_sample %>
+  </div>
+</div>
