@@ -15,7 +15,8 @@
   display: flex;
   flex-direction: column;
 
-  h1 {
+  strong {
+    font-size: 4.34rem;
     animation: animateBg 4s linear infinite;
     background-image: linear-gradient(45deg, $blue, $pink, $blue, $pink);
     background-size: 300% 100%;
@@ -32,6 +33,12 @@
       background-position: 100% 0;
     }
   }
+}
+
+.rotate {
+  transform: rotateX(40);
+  -moz-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
 }
 
 .homepage-illustration {
