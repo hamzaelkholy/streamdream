@@ -5,12 +5,6 @@ require 'json'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
-def get_watchmode_id(selected_movie)
-  uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
-  json = Net::HTTP.get(uri)
-  result_watchmode_search = JSON(json)
-end
-
 url = 'https://github.com/peetck/IMDB-Top1000-Movies/blob/master/IMDB-Movie-Data.csv'
 genres = ["action", "fantasy", "sci-fi", "horror", "romantic comedies", "comedies"]
 
@@ -48,7 +42,6 @@ CSV.foreach(filepath, csv_options) do |row|
     poster_url: omdb_json["Poster"],
     imdb_id: omdb_json["imdbID"],
     rating: row['Rating'].to_i,
-    watchmode_id: get_watchmode_id(omdb_json["imdbID"])["title_results"][0]["id"]
   )
 end
 
