@@ -23,14 +23,14 @@ class RecommendationMoviesController < ApplicationController
     @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies += params[:recommendation_movie][:already_selected].split(' ') if params.dig(:recommendation_movie, :already_selected).present?
 
-    if @selected_movies.length > 7
+    if @selected_movies.length > 12 # The empty string counts as an entry
       # Call the Watchmode api on the movies
+      raise
       @selected_movies.shift
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a title
         uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
-
         json = Net::HTTP.get(uri)
         result_watchmode_search = JSON(json)
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
@@ -41,7 +41,6 @@ class RecommendationMoviesController < ApplicationController
         result_watchmode_title["networks"]
       end
       # Which streaming service has the most hits
-
       redirect_to results_path
     else
       @results = []

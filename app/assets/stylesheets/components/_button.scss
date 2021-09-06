@@ -2,30 +2,31 @@
   padding: 9px 20px;
   border-radius: 25px;
 
-  color: $black;
+  color: $white;
   background-color: $white;
 
-  border: 2px solid $black;
+  border: 2px solid $white;
 
   &:hover {
-    background-color: $black;
+    background-color: $white;
     color: $white;
 
-    border: 2px solid $black;
+    border: 2px solid $white;
   }
 }
 
 .btn-primary {
   color: $off-white;
+
   background-color: #e0128e;
 
   border: 2px solid #e0128e;
 
   &:hover {
-    color: $off-black;
+    color: $off-white;
     background-color: transparent;
 
-    border: 2px solid $off-black;
+    border: 2px solid $off-white;
   }
 }
 
@@ -44,10 +45,11 @@
 }
 
 .btn-back {
+  color: $white;
   position: fixed;
-  left: 9%;
+  left: 4%;
 
   &:hover {
-    color: $blue;
+    color: $off-white;
   }
 }
