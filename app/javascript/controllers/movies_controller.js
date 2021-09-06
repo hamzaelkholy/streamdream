@@ -34,11 +34,11 @@ export default class extends Controller {
 
     this.element.querySelectorAll(".image-card").forEach((div) => {
       let id = +div.querySelector("input").value;
-      // console.log(id);
+      // Get id of movie
       let movieHash = movieArray.find((movie) => {
         return movie.id == id;
       });
-      // console.log(movieHash);
+      // put poster url as background
       div.style.backgroundImage = `url(${movieHash.url})`;
       div.style.backgroundSize = "cover";
 
