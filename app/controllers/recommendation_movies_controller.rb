@@ -51,7 +51,6 @@ class RecommendationMoviesController < ApplicationController
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a title
         uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
-
         json = Net::HTTP.get(uri)
         result_watchmode_search = JSON(json)
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
@@ -64,7 +63,6 @@ class RecommendationMoviesController < ApplicationController
       # Which streaming service has the most hits
       RecommendationMovie.new(network: @stream_hash.to_a.sample(1).to_h.values[0])
       stats
-      raise
       redirect_to results_path
     else
       @results = []
