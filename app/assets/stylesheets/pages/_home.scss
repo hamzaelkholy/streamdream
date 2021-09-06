@@ -17,6 +17,7 @@
 
   strong {
     animation: animateBg 4s linear infinite;
+    font-size: 3.2rem;
     background-image: linear-gradient(
       45deg,
       #52bbc2,
@@ -41,9 +42,8 @@
 }
 
 #rotate {
-  transform: rotate(-10deg);
-  margin-bottom: -2rem;
-  margin-top: -2rem;
+  transform: rotate(-6deg);
+  padding-left: 1rem;
 }
 
 .homepage-illustration {
