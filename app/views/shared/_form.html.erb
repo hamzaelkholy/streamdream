@@ -7,7 +7,7 @@
                         collection_wrapper_tag: 'div',
                         collection_wrapper_class: 'form-wrapper',
                         collection: movies_sample,
-                        input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards" } },
+                        input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards", action: "input->movies#countMovies" } },
                         label: 'Choose your preferences'
                         %>
     <% if @selected_movies.present? %>
@@ -17,5 +17,5 @@
     <% end %>
     <%= f.button :submit, 'Next', class: 'btn-primary' %>
   <% end %>
-  <br>
+  <%= render 'shared/accuracy', selected_movies: @selected_movies %>
 </div>
