@@ -52,7 +52,7 @@ export default class extends Controller {
     // console.log(infoBtn);
     infoBtn.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        console.log(e.target.parentElement.childNodes[0].value);
+        const movieId = e.target.parentElement.childNodes[0].value;
       });
     });
   }
