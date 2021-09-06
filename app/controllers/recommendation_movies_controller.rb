@@ -43,7 +43,6 @@ class RecommendationMoviesController < ApplicationController
       # Which streaming service has the most hits
 
       redirect_to results_path
-
     else
       @results = []
       # Find the movie id's and make them integer
@@ -61,9 +60,6 @@ class RecommendationMoviesController < ApplicationController
       # raise
       redirect_to new_recommendation_movie_path(ids: similar_movies_ids, selected_movies: @selected_movies)
     end
-  end
-
-  def results
   end
 
   private
@@ -115,7 +111,6 @@ class RecommendationMoviesController < ApplicationController
         @movies << Movie.find_by(title: movie["Name"])
       end
     end
-
     # Add 6 random movies
     @movies << Movie.all.sample(6)
     @movies.flatten!
