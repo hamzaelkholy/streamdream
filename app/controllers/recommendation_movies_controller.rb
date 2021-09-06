@@ -48,6 +48,8 @@ class RecommendationMoviesController < ApplicationController
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a imdb_id (get_watchmode_id(selected_movie))
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
+        get_watchmode_id(selected_movie)
+        raise
         # Call Watchmode API using ID to find the streaming service of a
         uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
         json_2 = Net::HTTP.get(uri_2)
