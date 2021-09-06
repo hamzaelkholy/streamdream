@@ -1,4 +1,4 @@
-<div data-controller="movies" data-movies-url="<%= movies_sample.map {|movie| { id: movie.id, url: movie.poster_url, title: movie.title} }.to_json %>">
+<div data-controller="movies" data-movies-url="<%= movies_sample.map {|movie| { id: movie.id, url: movie.poster_url, title: movie.title } }.to_json %>">
   <%= simple_form_for(recommendation_movie) do |f| %>
     <%= f.association :movie,
                         as: :check_boxes,
