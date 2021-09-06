@@ -39,7 +39,6 @@ class RecommendationMoviesController < ApplicationController
       369 => "Youtube Premium",
       445 => "Discovery+"
     }
-    @recommendation_movie = RecommendationMovie.new(recommendation_movie_params)
     @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies += params[:recommendation_movie][:already_selected].split(' ') if params.dig(:recommendation_movie, :already_selected).present?
     if @selected_movies.length > 8
@@ -48,12 +47,13 @@ class RecommendationMoviesController < ApplicationController
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a imdb_id
-        get_watchmode_id(selected_movie)
+        # get_watchmode_id(selected_movie)
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
         # Call Watchmode API using ID to find the streaming service of a
-        uri_2 = URI("https://api.watchmode.com/v1/title/#{result_watchmode_search["title_results"][0]["id"]}/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
+        uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
         json_2 = Net::HTTP.get(uri_2)
         result_watchmode_title = JSON(json_2)
+        raise
         @networks << result_watchmode_title["networks"]
       end
       # Which streaming service has the most hits
