@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_131118) do
+ActiveRecord::Schema.define(version: 2021_09_06_140839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 2021_09_03_131118) do
     t.string "network"
     t.index ["movie_id"], name: "index_recommendation_movies_on_movie_id"
     t.index ["recommendation_id"], name: "index_recommendation_movies_on_recommendation_id"
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "streaming_service_id"
+    t.index ["streaming_service_id"], name: "index_recommendations_on_streaming_service_id"
+    t.index ["user_id"], name: "index_recommendations_on_user_id"
   end
 
   create_table "streaming_services", force: :cascade do |t|
