@@ -25,7 +25,7 @@ class RecommendationMoviesController < ApplicationController
 
     if @selected_movies.length > 12 # The empty string counts as an entry
       # Call the Watchmode api on the movies
-      raise
+
       @selected_movies.shift
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:imdb_id]
