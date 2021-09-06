@@ -6,9 +6,9 @@
 // }
 
 .glass-container {
-  background-color: rgba(251, 249, 249, 0.3);
+  background-color: rgba($color: $off-black, $alpha: 0.2);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
-  border: solid 1px white;
+  border: solid 1px $off-pink;
   border-radius: 50px;
 }
 
