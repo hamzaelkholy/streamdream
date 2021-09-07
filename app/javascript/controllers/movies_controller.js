@@ -45,14 +45,19 @@ export default class extends Controller {
       // Add button to card
       div.insertAdjacentHTML(
         "beforeend",
-        "<i class='info-btn fas fa-info-circle'></i>"
+        "<i class='info-btn fas fa-info-circle' data-toggle='modal' data-target='#exampleModal'></i>"
       );
     });
+
+    // Get info button
     const infoBtn = document.querySelectorAll(".info-btn");
-    // console.log(infoBtn);
+
+    // For each button, get the id of the movie
     infoBtn.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const movieId = e.target.parentElement.childNodes[0].value;
+        e.target.dataset.target = `#exampleModal-${movieId}`;
+        console.log(e.target.dataset.target);
       });
     });
   }

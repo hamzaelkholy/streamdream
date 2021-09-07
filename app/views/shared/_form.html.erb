@@ -17,5 +17,8 @@
     <%# <% end %>
     <%= f.button :submit, 'Next', class: 'btn-primary' %>
   <% end %>
+  <% movies_sample.each do |movie| %>
+    <%= render 'shared/popup', movie: movie %>
+  <% end %>
 </div>
 <%= render 'shared/accuracy', selected_movies: @selected_movies %>
