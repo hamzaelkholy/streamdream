@@ -15,7 +15,7 @@ body {
   .movie-card {
   background:#e2e2e2;
   width:800px;
-  height:400px;
+  height:450px;
   background:transparent;
   position:absolute;
   left:0;
@@ -29,7 +29,7 @@ body {
   box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
   &_left {
     width:40%;
-    height:400px;
+    height:450px;
     float:left;
     overflow:hidden;
     background:transparent;
@@ -46,7 +46,7 @@ body {
     width:60%;
     float:left;
     background:#000000;
-    height:400px;
+    height:450px;
     border-radius:0 10px 10px 0;
     -webkit-border-radius:0 10px 10px 0;
     -moz-border-radius:0 10px 10px 0;
