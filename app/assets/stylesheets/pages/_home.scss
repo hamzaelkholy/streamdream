@@ -5,6 +5,7 @@
 }
 
 .homepage-top-section {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -38,6 +39,22 @@
     }
     100% {
       background-position: 100% 0;
+    }
+  }
+}
+
+.next {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  i {
+    color: $white;
+
+    &:hover {
+      color: $blue;
     }
   }
 }
