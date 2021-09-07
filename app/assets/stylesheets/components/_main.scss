@@ -1,6 +1,6 @@
 h1 {
   font-family: $headers-font;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
 
@@ -11,6 +11,7 @@ h2 {
   font-family: $headers-font;
   font-size: 2rem;
   font-weight: 500;
+  text-align: center;
 
   color: $white;
 }
@@ -19,6 +20,7 @@ h3 {
   font-family: $headers-font;
   font-size: 1.3rem;
   font-weight: 500;
+  margin-bottom: 1rem;
 
   color: $white;
 }
