@@ -3,6 +3,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  strong {
+    animation: animateBg 4s linear infinite;
+    font-size: 3.2rem;
+    background-image: linear-gradient(
+      45deg,
+      #6e96e6,
+      #bf1336,
+      #f3a076,
+      #6e96e6,
+      #bf1336,
+      #f3a076
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes animateBg {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
 }
 
 .form-wrapper {

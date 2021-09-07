@@ -18,9 +18,9 @@
 .btn-primary {
   color: $off-white;
 
-  background-color: #e0128e;
+  background-color: $red;
 
-  border: 2px solid #e0128e;
+  border: 2px solid $red;
 
   &:hover {
     color: $off-white;
@@ -50,7 +50,7 @@
   left: 4%;
 
   &:hover {
-    color: $off-white;
+    color: $blue;
   }
 }
 
