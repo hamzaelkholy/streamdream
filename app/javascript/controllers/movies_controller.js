@@ -7,7 +7,7 @@ export default class extends Controller {
   countMovies() {
     let selected = document.querySelectorAll(".hide-checkbox:checked");
     let already_selected = this.alreadyConnectedTarget.value.split(" ").length;
-    console.log(selected.length + already_selected);
+    // console.log(selected.length + already_selected);
     this.accuracyBar.animate((selected.length + already_selected) / 13);
   }
 
@@ -34,13 +34,31 @@ export default class extends Controller {
 
     this.element.querySelectorAll(".image-card").forEach((div) => {
       let id = +div.querySelector("input").value;
-      // console.log(id);
+      // Get id of movie
       let movieHash = movieArray.find((movie) => {
         return movie.id == id;
       });
-      // console.log(movieHash);
+      // put poster url as background
       div.style.backgroundImage = `url(${movieHash.url})`;
       div.style.backgroundSize = "cover";
+
+      // Add button to card
+      div.insertAdjacentHTML(
+        "beforeend",
+        "<i class='info-btn fas fa-info-circle' data-toggle='modal' data-target='#exampleModal'></i>"
+      );
+    });
+
+    // Get info button
+    const infoBtn = document.querySelectorAll(".info-btn");
+
+    // For each button, get the id of the movie
+    infoBtn.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const movieId = e.target.parentElement.childNodes[0].value;
+        e.target.dataset.target = `#exampleModal-${movieId}`;
+        console.log(e.target.dataset.target);
+      });
     });
   }
 }

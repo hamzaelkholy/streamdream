@@ -1,4 +1,4 @@
-<div data-controller="movies" data-movies-url="<%= movies_sample.map {|movie| { id: movie.id, url: movie.poster_url, title: movie.title} }.to_json %>">
+<div data-controller="movies" data-movies-url="<%= movies_sample.map {|movie| { id: movie.id, url: movie.poster_url, title: movie.title } }.to_json %>">
   <%= simple_form_for(recommendation_movie) do |f| %>
     <%= f.association :movie,
                         as: :check_boxes,
@@ -16,6 +16,9 @@
                           input_html: { value: @selected_movies, data: { 'movies-target' => 'alreadyConnected' } } %>
     <%# <% end %>
     <%= f.button :submit, 'Next', class: 'btn-primary' %>
+  <% end %>
+  <% movies_sample.each do |movie| %>
+    <%= render 'shared/popup', movie: movie %>
   <% end %>
 </div>
 <%= render 'shared/accuracy', selected_movies: @selected_movies %>
