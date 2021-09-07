@@ -2,21 +2,16 @@
   <%= link_to root_path, class: "navbar-brand" do %>
     <h1 id="navbar_logo"> <strong> StreamDream </strong></h1>
   <% end %>
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <% if current_page?(root_path) %>
     <div class="navbar-root-path-menu" >
-      <a href="">Upcoming</a>
-      <a href="">Popular</a>
-      <a href="">Trending</a>
-      <a href="">About</a>
+      <a href="#service">Service</a>
+      <a href="#about">About</a>
       <a href="">Contact</a>
     </div>
   <% end %>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
