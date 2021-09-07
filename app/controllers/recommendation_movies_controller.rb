@@ -41,9 +41,8 @@ class RecommendationMoviesController < ApplicationController
     }
     @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies += params[:recommendation_movie][:already_selected].split(' ') if params.dig(:recommendation_movie, :already_selected).present?
-    if @selected_movies.length > 8
+    if @selected_movies.length > 7
       # # Call the Watchmode api on the movies
-      @selected_movies.shift
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a imdb_id (get_watchmode_id(selected_movie))
@@ -63,7 +62,6 @@ class RecommendationMoviesController < ApplicationController
       @results = []
       # Find the movie id's and make them integer
       @movie_ids = params[:recommendation_movie][:movie_id]
-      @movie_ids.shift
       # Create array of selected movies
       @movie_ids.map!(&:to_i)
 
@@ -91,10 +89,10 @@ class RecommendationMoviesController < ApplicationController
       url = "https://tastedive.com/api/similar?q=#{selected_movie}"
       uri = URI.parse(url)
       serialized_search = uri.read
-      @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(6 / @movie_ids.length)
+      @results << JSON.parse(serialized_search)["Similar"]["Results"].sample(6)
       @results.flatten!
       # Create Movie Object
-      create_movie(@results)
+      create_movie(@results.sample(6))
     end
   end
 
