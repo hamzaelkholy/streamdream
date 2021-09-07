@@ -7,7 +7,7 @@ export default class extends Controller {
   countMovies() {
     let selected = document.querySelectorAll(".hide-checkbox:checked");
     let already_selected = this.alreadyConnectedTarget.value.split(" ").length;
-    console.log(selected.length + already_selected);
+    // console.log(selected.length + already_selected);
     this.accuracyBar.animate((selected.length + already_selected) / 13);
   }
 
@@ -42,7 +42,18 @@ export default class extends Controller {
       div.style.backgroundImage = `url(${movieHash.url})`;
       div.style.backgroundSize = "cover";
 
-      div.insertAdjacentHTML();
+      // Add button to card
+      div.insertAdjacentHTML(
+        "beforeend",
+        "<i class='info-btn fas fa-info-circle'></i>"
+      );
+    });
+    const infoBtn = document.querySelectorAll(".info-btn");
+    // console.log(infoBtn);
+    infoBtn.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const movieId = e.target.parentElement.childNodes[0].value;
+      });
     });
   }
 }
