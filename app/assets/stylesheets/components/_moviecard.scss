@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 .modal-dialog {
   margin: auto;
 }
@@ -108,12 +106,14 @@ body {
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+// .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label { color: $red;  } /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+// .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+.rating > input:checked ~ label:hover ~ label { color: $red;  }
       }
     }
     &__review {
@@ -131,32 +131,40 @@ body {
         font-family: 'Montserrat', sans-serif;
         font-size:14px;
         padding:0 0 0 40px;
-        color:#ffda00;
+        // color:#ffda00;
+        color: $red;
         margin:0;
       }
     }
 &__button {
       a {
-        color:#ffda00;
+        i{
+          margin-right: 20px;
+        }
+        // color:#ffda00;
+        color: $red;
         text-decoration:none;
         font-family: 'Montserrat', sans-serif;
-        border:2px solid #ffda00;
-        padding:10px 10px 10px 40px;
+        // border:2px solid #ffda00;
+        border:2px solid $red;
+        padding:10px 10px 10px 10px;
         font-size:12px;
-        background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/COMdoWZ.png);
+        // background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/COMdoWZ.png);
         background-size:12px 12px;
         background-repeat:no-repeat;
             background-position: 7% 50%;
-        border-radius:5px;
+        border-radius:130px;
           -webkit-transition-property: all;
           transition-property: all;
   -webkit-transition-duration: .5s;
           transition-duration: .5s;
       }
       a:hover {
-            color: #000000;
-  background-color: #ffda00;
-        background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/rFQ5dHA.png);
+            // color: #000000;
+            color: $white;
+  // background-color: #ffda00;
+  background-color: $red;
+        // background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/rFQ5dHA.png);
           background-size:12px 12px;
         background-repeat:no-repeat;
             background-position: 10% 50%;
@@ -171,4 +179,10 @@ body {
     }
 }
 }
+}
+.selection-container {
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
 }

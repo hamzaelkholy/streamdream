@@ -34,7 +34,7 @@ export default class extends Controller {
       },
     });
 
-    this.accuracyBar.animate(already_selected.split(" ").length / 12);
+    this.accuracyBar.animate(already_selected.split(" ").length / 9);
 
     this.element.querySelectorAll(".image-card").forEach((div) => {
       let id = +div.querySelector("input").value;

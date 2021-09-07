@@ -66,11 +66,11 @@
       </div>
     </div>
     <div class="movie-card_right__review">
-      <p><%= movie.description %></p>
-      <a href="http://www.imdb.com/title/tt0266697/plotsummary?ref_=tt_stry_pl" target="_blank">Read more</a>
+      <p><%= movie.description.truncate(300)%></p>
+      <a href="https://www.imdb.com/title/<%= movie.imdb_id %>/?ref_=fn_al_tt_1" target="_blank">Read more</a>
     </div>
     <div class="movie-card_right__button">
-      <a href="https://www.youtube.com/watch?v=ot6C1ZKyiME" target="_blank">WATCH TRAILER</a>
+      <a href="https://www.youtube.com/watch?v=ot6C1ZKyiME" target="_blank"><i class="fas fa-play"></i>WATCH TRAILER</a>
     </div>
   </div>
 </div>
