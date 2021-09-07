@@ -1,7 +1,9 @@
 #accuracy-meter {
   position: fixed;
   bottom: 2%;
-  border-radius: 3rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
-  color: #ec008c;
+  border-radius: 3rem;
 }

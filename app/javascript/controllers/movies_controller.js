@@ -8,7 +8,11 @@ export default class extends Controller {
     let selected = document.querySelectorAll(".hide-checkbox:checked");
     let already_selected = this.alreadyConnectedTarget.value.split(" ").length;
     // console.log(selected.length + already_selected);
-    this.accuracyBar.animate((selected.length + already_selected) / 13);
+    this.accuracyBar.animate((selected.length + already_selected) / 9);
+
+    // if (this.accuracyBar.value() >= 0.888889) {
+    //   this.accuracyBar.setText("Done");
+    // }
   }
 
   connect() {
@@ -23,8 +27,8 @@ export default class extends Controller {
 
       trailColor: "#fbf9f9",
 
-      from: { color: "#f7797d" },
-      to: { color: "#C6FFDD" },
+      from: { color: "#bf1336" },
+      to: { color: "#6EE688" },
       step: function (state, line) {
         line.path.setAttribute("stroke", state.color);
       },
