@@ -2,6 +2,7 @@ require 'open-uri'
 require 'net/http'
 require 'uri'
 require 'json'
+
 class RecommendationMoviesController < ApplicationController
   def new
     @recommendation_movie = RecommendationMovie.new
@@ -17,48 +18,30 @@ class RecommendationMoviesController < ApplicationController
       end
     end
   end
-
   def create
-    @networks = []
-    @stats = {
-      genres: [],
-      directors: [],
-      dates_released: []
-    }
-    @stream_hash = {
-      203 => "Netflix",
-      372 => "Disney Plus",
-      157 => "Hulu",
-      360 => "HBO",
-      146 => "HBO NOW",
-      26 => "Amazon Prime",
-      371 => "AppleTV+",
-      387 => "HBO Max",
-      389 => "Peacock",
-      77 => "Crackle",
-      369 => "Youtube Premium",
-      445 => "Discovery+"
-    }
+    @recommendation_movie = RecommendationMovie.new(recommendation_movie_params)
     @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies += params[:recommendation_movie][:already_selected].split(' ') if params.dig(:recommendation_movie, :already_selected).present?
-    if @selected_movies.length > 8
-      # # Call the Watchmode api on the movies
+
+    if @selected_movies.length > 12 # The empty string counts as an entry
+      # Call the Watchmode api on the movies
+
       @selected_movies.shift
       @selected_movies.each do |movie_id|
         selected_movie = Movie.find(movie_id)[:imdb_id]
-        # Call Watchmode API to find the Watchmode id of a imdb_id (get_watchmode_id(selected_movie))
+        # Call Watchmode API to find the Watchmode id of a title
+        uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
+        json = Net::HTTP.get(uri)
+        result_watchmode_search = JSON(json)
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
-        # get_watchmode_id(selected_movie)
         # Call Watchmode API using ID to find the streaming service of a
-        # uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
-        # json_2 = Net::HTTP.get(uri_2)
-        # result_watchmode_title = JSON(json_2)
+        uri_2 = URI("https://api.watchmode.com/v1/title/#{result_watchmode_search["title_results"][0]["id"]}/details/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
+        json_2 = Net::HTTP.get(uri_2)
+        result_watchmode_title = JSON(json_2)
+        result_watchmode_title["networks"]
       end
       # Which streaming service has the most hits
-      RecommendationMovie.new(network: @stream_hash.to_a.sample(1).to_h.values[0])
-      stats
-
-      redirect_to results_path(recommendation_movie: { movie_id: @selected_movies })
+      redirect_to results_path
     else
       @results = []
       # Find the movie id's and make them integer
@@ -73,16 +56,16 @@ class RecommendationMoviesController < ApplicationController
       @movies.each { |movie| similar_movies_ids << movie.id }
 
       # Give similar movies to the param for next page load
+      # raise
       redirect_to new_recommendation_movie_path(ids: similar_movies_ids, selected_movies: @selected_movies)
     end
   end
 
-  def show_results
-    @recommendation_movies = current_user.recommendation_movies
-    stats
-  end
-
   private
+
+  def recommendation_movie_params
+    # params.require(:recommendation_movie).permit(:movie_id)
+  end
 
   def find_similar_movies
     @movie_ids.each do |movie_id|
@@ -96,12 +79,6 @@ class RecommendationMoviesController < ApplicationController
       # Create Movie Object
       create_movie(@results)
     end
-  end
-
-  def get_watchmode_id(selected_movie)
-    uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
-    json = Net::HTTP.get(uri)
-    result_watchmode_search = JSON(json)
   end
 
   def create_movie(results)
@@ -138,33 +115,17 @@ class RecommendationMoviesController < ApplicationController
     @movies.flatten!
   end
 
-
-
-  def stats
-    @stats = {
-      genres: [],
-      directors: [],
-      dates_released: []
-    }
-
-    @selected_movies = params[:recommendation_movie][:movie_id]
-    @selected_movies.each do |movie|
-      current_movie = Movie.find(movie)
-      @stats[:genres] << current_movie.genre.split(",")
-      @stats[:directors] << current_movie.director
-      @stats[:dates_released] << current_movie.date_released.to_i
-      @stats[:genres].flatten!
-    end
-
-    @genres_and_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
-    @genre_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
-    @most_genre = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@genre_occurences.max)
-
-    @directors_and_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
-    @director_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
-    @most_director = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@director_occurences)
-
-    return @stats
+  def show
+    @reccomendation_movies = ReccomendationMovies.find(params[:id]) if params[:id]
   end
 
+  def selected_movies_integer_array
+    # @movie_ids = params[:recommendation_movie][:movie_id]
+    # @movie_ids.shift
+    @selected_movies.shift
+    @movie_ids.map do |movie_id|
+      @selected_movies << movie_id.to_i
+    end
+    @selected_movies
+  end
 end
