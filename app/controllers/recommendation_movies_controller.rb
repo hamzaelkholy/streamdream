@@ -48,17 +48,17 @@ class RecommendationMoviesController < ApplicationController
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a imdb_id (get_watchmode_id(selected_movie))
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
-        get_watchmode_id(selected_movie)
-        raise
+        # get_watchmode_id(selected_movie)
         # Call Watchmode API using ID to find the streaming service of a
-        uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
-        json_2 = Net::HTTP.get(uri_2)
-        result_watchmode_title = JSON(json_2)
+        # uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
+        # json_2 = Net::HTTP.get(uri_2)
+        # result_watchmode_title = JSON(json_2)
       end
       # Which streaming service has the most hits
       RecommendationMovie.new(network: @stream_hash.to_a.sample(1).to_h.values[0])
       stats
-      redirect_to results_path
+
+      redirect_to results_path(recommendation_movie: { movie_id: @selected_movies })
     else
       @results = []
       # Find the movie id's and make them integer
@@ -75,6 +75,11 @@ class RecommendationMoviesController < ApplicationController
       # Give similar movies to the param for next page load
       redirect_to new_recommendation_movie_path(ids: similar_movies_ids, selected_movies: @selected_movies)
     end
+  end
+
+  def show_results
+    @recommendation_movies = current_user.recommendation_movies
+    stats
   end
 
   private
@@ -133,11 +138,16 @@ class RecommendationMoviesController < ApplicationController
     @movies.flatten!
   end
 
-  def show
-    @reccomendation_movies = ReccomendationMovies.find(params[:id]) if params[:id]
-  end
+
 
   def stats
+    @stats = {
+      genres: [],
+      directors: [],
+      dates_released: []
+    }
+
+    @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies.each do |movie|
       current_movie = Movie.find(movie)
       @stats[:genres] << current_movie.genre.split(",")
@@ -148,11 +158,13 @@ class RecommendationMoviesController < ApplicationController
 
     @genres_and_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
     @genre_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
-    @most_genre = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@genre_occurences)
+    @most_genre = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@genre_occurences.max)
 
     @directors_and_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
     @director_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
     @most_director = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@director_occurences)
+
+    return @stats
   end
 
 end
