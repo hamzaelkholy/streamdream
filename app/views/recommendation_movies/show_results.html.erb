@@ -35,29 +35,47 @@
 
 </div>
 
-<div class="stats">
-  <p>Genres: params[:results][:movies]</p>
-  <p>Directors: params[:results][:statistics][:directors]</p>
-  <p>Dates released:</p>
+<div class="progress">
+  <div class="progress-bar progress-bar-genres" role="progressbar" style="width:40%" id='genres' data-genres-stats="<%=@stats[:genres].to_json%>">
+  <%=  %>
+    Genres
+  </div>
+  <div class="progress-bar progress-bar-directors" role="progressbar" style="width:10%" id='directors' data-directors-stats="<%=@stats[:directors].to_json%>">
+    Directors
+  </div>
+  <div class="progress-bar progress-bar-movies" role="progressbar" style="width:20%" id='movies' data-movies-stats="<%=@stats[:movies].to_json%>">
+    Movies
+  </div>
 </div>
 
+<div class="progress">
 
-  <h2>Our recommended streaming service for you:</h2>
+</div>
+
+<div class='statsbar'>
+  <div class='bartitle'><h2>Our recommended streaming service for you:</h2></div>
   <%# Genres %>
   <h3><%= params[:results][:streaming_service] %></h3>
-  <% genres = params[:results][:statistics][:genres].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
-  <% genres.each do |key, value| %>
-    <p><%= key %></p>
-    <p><%= value %> times</p>
-  <% end %>
+  <div class='genresbar'>
+    <% genres = params[:results][:statistics][:genres].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
+    <% genres.each do |key, value| %>
+      <p><%= key %></p>
+      <p><%= value %> times</p>
+    <% end %>
+  </div>
   <%# Directors %>
-  <% directors = params[:results][:statistics][:directors].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
-  <% directors.each do |key, value| %>
-    <p><%= key %></p>
-    <p><%= value %> times</p>
-  <% end %>
+  <div class='directorsbar'>
+    <% directors = params[:results][:statistics][:directors].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
+    <% directors.each do |key, value| %>
+      <p><%= key %></p>
+      <p><%= value %> times</p>
+    <% end %>
+  </div>
   <%# Your selected movies %>
-  <% movies = params[:results][:movies] %>
-  <% movies.each do |movie| %>
-    <p><%= Movie.find(movie).title %></p>
-  <% end %>
+  <div class='moviesbar'>
+    <% movies = params[:results][:movies] %>
+    <% movies.each do |movie| %>
+      <p><%= Movie.find(movie).title %></p>
+    <% end %>
+  </div>
+</div>

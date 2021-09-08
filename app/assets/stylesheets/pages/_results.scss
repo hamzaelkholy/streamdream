@@ -1,19 +1,22 @@
 .divMargin{
-  margin: 50px;
+  margin: 30px;
+  padding-top: 5px;
 }
 
 p.breakAfter{
-  margin-bottom:1.5em;
-  font-family: "Helvetica";
+  margin-bottom:5em;
+
 }
 
 h1{
   font-size: 3.5rem;
-  font-family: "Helvetica";
+  font-family: "Impact", "sans-serif";
 }
 
 p{
-  font-family: "Helvetica";
+  font-family: "Poppins", "sans-serif";
+  padding-top: 30px;
+
 }
 
 .netflix_logo {
@@ -35,4 +38,25 @@ p{
 
 .divSpace{
   margin:1.5em;
+}
+
+.progress{
+
+}
+
+.statsbar{
+
+}
+
+.genresbar{
+
+}
+
+
+.directorsbar{
+
+}
+
+.moviesbar{
+
 }
