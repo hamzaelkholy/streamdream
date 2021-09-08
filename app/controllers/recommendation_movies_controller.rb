@@ -168,3 +168,7 @@ class RecommendationMoviesController < ApplicationController
   end
 
 end
+
+# Add a div (100% white);
+# no. children div = no. genres (w/ same ID as the genres);
+# based on the genres and occurences >> change the width of the children div
