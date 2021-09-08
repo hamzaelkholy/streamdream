@@ -37,10 +37,11 @@ class RecommendationMoviesController < ApplicationController
       "Peacock" => 389,
       "Crackle" => 77,
       "Youtube Premium" => 369,
-      "Discovery+" => 445,
+      "Discovery+" => 445
     }
     @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies += params[:recommendation_movie][:already_selected].split(' ') if params.dig(:recommendation_movie, :already_selected).present?
+
     if @selected_movies.length > 7
       # # Call the Watchmode api on the movies
       @selected_movies.each do |movie_id|
@@ -68,9 +69,8 @@ class RecommendationMoviesController < ApplicationController
       recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
       # Which streaming service has the most hits
       @recommendation_movie = RecommendationMovie.new(network: recommendation_service)
-      statistics = stats # method to get the year, director and genres
-      raise
-      redirect_to results_path(results: { streaming_services: counted_service, movies: @selected_movies, statistics: statistics })
+      stats # method to get the year, director and genres
+      redirect_to results_path(results: { streaming_services: counted_service, movies: @selected_movies, statistics: @stats })
     else
       @results = []
       # Find the movie id's and make them integer
@@ -90,7 +90,6 @@ class RecommendationMoviesController < ApplicationController
 
   def show_results
     @recommendation_movies = current_user.recommendation_movies
-    stats
   end
 
   private
@@ -157,8 +156,7 @@ class RecommendationMoviesController < ApplicationController
       directors: [],
       dates_released: []
     }
-
-    @selected_movies = params[:recommendation_movie][:movie_id]
+    # @selected_movies = params[:results][:movies]
     @selected_movies.each do |movie|
       current_movie = Movie.find(movie)
       @stats[:genres] << current_movie.genre.split(",")
@@ -166,7 +164,6 @@ class RecommendationMoviesController < ApplicationController
       @stats[:dates_released] << current_movie.date_released.to_i
       @stats[:genres].flatten!
     end
-
     @genres_and_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
     @genre_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
     @most_genre = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@genre_occurences.max)
@@ -177,7 +174,6 @@ class RecommendationMoviesController < ApplicationController
 
     return @stats
   end
-
 end
 
 # Add a div (100% white);
