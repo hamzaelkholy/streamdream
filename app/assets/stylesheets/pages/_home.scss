@@ -60,7 +60,8 @@
 }
 
 #rotate {
-  transform: rotate(-6deg);
+  // transform: translateY(10px);
+  transform: rotate(-6deg) translateY(-0.2em);
   padding-left: 1rem;
 }
 
