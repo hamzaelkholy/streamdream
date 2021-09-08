@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="movie-card_right__review">
-      <p><%= movie.description.truncate(300)%></p>
+      <p><%= movie.description&.truncate(300)%></p>
       <a href="https://www.imdb.com/title/<%= movie.imdb_id %>/?ref_=fn_al_tt_1" target="_blank">Read more</a>
     </div>
     <div class="movie-card_right__button">
