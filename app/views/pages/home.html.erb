@@ -14,47 +14,51 @@
     </div>
     <%= image_tag "stream-guy.png", alt: "streamdream-img", class: 'homepage-illustration' %>
     <div class="next">
-      <a href="#service"><i class="fas fa-caret-down fa-5x"></i></a>
+      <%= link_to "#homepage-info", data: {controller: "scroll-to"} do %>
+        <i class="fas fa-caret-down fa-5x"></i>
+      <% end %>
     </div>
   </div>
-  <div class="homepage-service">
-    <h2 id="service">Our Service</h2>
-    <div class="glass-container homepage-how-to">
-      <div class="homepage-content">
-        <i class="fas fa-tasks fa-2x"></i>
-        <div class="card-description">
-          <h3>Preferences</h3>
-          <p>Choose your favourite movies,
-            no matter the style</p>
+  <div class="homepage-info" id="homepage-info">
+    <div class="homepage-service">
+      <h2 id="service">Our Service</h2>
+      <div class="glass-container homepage-how-to">
+        <div class="homepage-content">
+          <i class="fas fa-tasks fa-2x"></i>
+          <div class="card-description">
+            <h3>Preferences</h3>
+            <p>Choose your favourite movies,
+              no matter the style</p>
+          </div>
         </div>
-      </div>
-      <div class="homepage-content">
-        <i class="fas fa-cogs fa-2x"></i>
-        <div class="card-description">
-          <h3>Calculate</h3>
-          <p>Depending on what you chose,
-            we calculate your optimal match</p>
+        <div class="homepage-content">
+          <i class="fas fa-cogs fa-2x"></i>
+          <div class="card-description">
+            <h3>Calculate</h3>
+            <p>Depending on what you chose,
+              we calculate your optimal match</p>
+          </div>
         </div>
-      </div>
-      <div class="homepage-content">
-        <i class="fas fa-couch fa-2x"></i>
-        <div class="card-description">
-          <h3>Enjoy</h3>
-          <p>Grab some popcorn,
-            and enjoy your evening</p>
+        <div class="homepage-content">
+          <i class="fas fa-couch fa-2x"></i>
+          <div class="card-description">
+            <h3>Enjoy</h3>
+            <p>Grab some popcorn,
+              and enjoy your evening</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="homepage-about">
-    <h2 id="about">About us</h2>
-    <div class="glass-container homepage-how-to">
-      <div class="homepage-content">
-        <div class="card-description">
-          <h3>Preferences</h3>
-          <p>Choose your favourite movies,
-            no matter the style
-          </p>
+    <div class="homepage-about">
+      <h2 id="about">About us</h2>
+      <div class="glass-container homepage-how-to">
+        <div class="homepage-content">
+          <div class="card-description">
+            <h3>Preferences</h3>
+            <p>Choose your favourite movies,
+              no matter the style
+            </p>
+          </div>
         </div>
       </div>
     </div>
