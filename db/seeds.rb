@@ -24,6 +24,7 @@ puts 'Creating movies...'
 filepath = Rails.root.join('lib/IMDB-Movie-Data.csv')
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
+# Movies
 CSV.foreach(filepath, csv_options) do |row|
   # Call omdb API for poster
   omdb_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_KEY']}&t=#{row['Title']}"
@@ -44,36 +45,6 @@ CSV.foreach(filepath, csv_options) do |row|
     rating: row['Rating'].to_i,
   )
 end
-
-CSV.foreach(filepath, csv_options) do |row|
-  row['Actors'].split(",").each do |actor|
-    p Actor.create(
-      name: actor
-    )
-  end
-end
-
-p netflix = StreamingService.create!(
-  name: "netflix"
-)
-
-p amazonprime = StreamingService.create!(
-  name: "amazonprime"
-)
-
-p hbo = StreamingService.create!(
-  name: "hbo"
-)
-
-p hulu = StreamingService.create!(
-  name: "hulu"
-)
-
-p disney = StreamingService.create!(
-  name: "disney"
-)
-
-streaming_services = [netflix, amazonprime, hbo, hulu, disney]
 
 p iliana = User.create!(
   first_name: 'Iliana',
@@ -106,6 +77,3 @@ p mert = User.create!(
   email: 'mert@gmail.com',
   password: '123456'
 )
-
-movie_id = Movie.last.id
-movie_id2 = movie_id - 100

@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <h1 id="navbar_logo"> <strong> StreamDream </strong></h1>
+    <%= image_tag "streamdream-logo.png", alt: "streamdream-logo", id: "logo" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "input btn btn-dark" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
         </li>
       <% end %>
     </ul>

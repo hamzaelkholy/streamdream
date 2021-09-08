@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 1.5rem;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -25,8 +26,7 @@
   cursor: pointer;
 }
 
-#navbar_logo {
-  font-weight: bold;
-  font-size: 25px;
-  letter-spacing: -1px;
+#logo {
+  width: 6rem;
+  height: auto;
 }

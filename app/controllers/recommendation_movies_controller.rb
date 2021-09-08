@@ -26,18 +26,18 @@ class RecommendationMoviesController < ApplicationController
       dates_released: []
     }
     @stream_hash = {
-      203 => "Netflix",
-      372 => "Disney Plus",
-      157 => "Hulu",
-      360 => "HBO",
-      146 => "HBO NOW",
-      26 => "Amazon Prime",
-      371 => "AppleTV+",
-      387 => "HBO Max",
-      389 => "Peacock",
-      77 => "Crackle",
-      369 => "Youtube Premium",
-      445 => "Discovery+"
+      "Netflix" => 203,
+      "Disney Plus" => 372,
+      "Hulu" => 157,
+      "HBO" => 360,
+      "HBO NOW" => 146,
+      "Amazon Prime" => 26,
+      "AppleTV+" => 371,
+      "HBO Max" => 387,
+      "Peacock" => 389,
+      "Crackle" => 77,
+      "Youtube Premium" => 369,
+      "Discovery+" => 445,
     }
     @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies += params[:recommendation_movie][:already_selected].split(' ') if params.dig(:recommendation_movie, :already_selected).present?
@@ -47,17 +47,30 @@ class RecommendationMoviesController < ApplicationController
         selected_movie = Movie.find(movie_id)[:imdb_id]
         # Call Watchmode API to find the Watchmode id of a imdb_id (get_watchmode_id(selected_movie))
         # THIS IS THE WATCHMODE ID (result_watchmode_search["title_results"][0]["id"])
-        # get_watchmode_id(selected_movie)
+        get_watchmode_id(selected_movie)
         # Call Watchmode API using ID to find the streaming service of a
-        # uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
-        # json_2 = Net::HTTP.get(uri_2)
-        # result_watchmode_title = JSON(json_2)
-      end
-      # Which streaming service has the most hits
-      RecommendationMovie.new(network: @stream_hash.to_a.sample(1).to_h.values[0])
-      stats
+        uri_2 = URI("https://api.watchmode.com/v1/title/#{get_watchmode_id(selected_movie)["title_results"][0]["id"]}/sources/?apiKey=#{ENV['WATCHMODE_API_KEY']}")
+        service_json = Net::HTTP.get(uri_2)
+        watchmode_service_list = JSON(service_json)
 
-      redirect_to results_path(recommendation_movie: { movie_id: @selected_movies })
+        # Array of all found streaming services
+        @service_source_ids = []
+
+        # Get the source_id for each movie
+        watchmode_service_list.each do |service|
+          @service_source_ids << service["source_id"] if service["type"] == 'sub'
+        end
+      end
+      # Count the streaming service hits
+      counted_service = @service_source_ids.inject(Hash.new(0)) { |total, id| total[id] += 1; total }
+
+      # Get streaming service with most hits
+      recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
+      # Which streaming service has the most hits
+      @recommendation_movie = RecommendationMovie.new(network: recommendation_service)
+      statistics = stats # method to get the year, director and genres
+      raise
+      redirect_to results_path(results: { streaming_services: counted_service, movies: @selected_movies, statistics: statistics })
     else
       @results = []
       # Find the movie id's and make them integer
