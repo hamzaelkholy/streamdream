@@ -115,7 +115,7 @@ class RecommendationMoviesController < ApplicationController
   def get_watchmode_id(selected_movie)
     uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
     json = Net::HTTP.get(uri)
-    result_watchmode_search = JSON(json)
+    JSON(json)
   end
 
   def create_movie(results)
