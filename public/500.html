@@ -145,13 +145,30 @@
   <div class="dialog">
     <div class="error-text">
       <h1>500</h1>
-      <h3>Oops!Server Error.</h3>
-      <p>It's not you,its me.</p>
+      <h3>Oops!Internal Server Error</h3>
+      <p id="error-sentence"></p>
     </div>
     <br>
     <br>
 
     <a class="btn btn-primary" href="https://www.streamdream.me">Go back to homepage</a>
   </div>
+
+  <script>
+    window.onload = function changeSentence() {
+    const errorSentences = ["Well gosh! Looks like there was an error. Our bad.",
+      "The website is having a bad day. We apologise for any inconvenience this may have caused.",
+      "Oh no!The movie you are looking for does not exist on any streaming service.",
+      "Sorry, too many people are using our service right now.",
+      "Looks like one of our developers fell asleep! We will be back soon.",
+      "We are not exactly sure what happened, but our servers say something is wrong.",
+      "We're working towards creating something better; we won't be long.",
+      "Oh no! our moustache code is not working properly. we will be back soon!",
+    ];
+    const sentence = document.getElementById('error-sentence');
+    const newSentence = errorSentences[Math.floor(Math.random() * errorSentences.length)];
+    sentence.innerHTML = newSentence;
+  };
+  </script>
 </body>
 </html>
