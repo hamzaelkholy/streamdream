@@ -16,7 +16,7 @@
   <div class="movie-card_right__details">
     <ul>
       <li><%= movie.date_released %></li>
-      <li><%= movie.genre.gsub(",",", ") %></li>
+      <li><%= movie.genre.gsub(",",", ") unless movie.genre.nil? %></li>
       <li><i class="fab fa-imdb text-white text-xl-left"></i>                      <%=movie.rating%> / 10</li>
     </ul>
     <div class="movie-card_right__rating">
