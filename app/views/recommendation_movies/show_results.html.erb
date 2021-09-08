@@ -1,7 +1,60 @@
-<div class="result_page">
-  <h1>We have found your match</h1>
+<div class="result_page" class=”breakAfter”>
+
+<div class="divMargin" class=”breakAfter”>
+<h1>We have found your match</h1>
+
   <p>Click below to subscribe</p>
-  <%= image_tag("Netflix-Logo.png", class: "netflix_logo" ) %>
-  <%= image_tag("amazonprime.png", class: "amazon_logo" ) %>
-  <%= image_tag("disneyplus.png", class: "disneyplus_logo" ) %>
 </div>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" class="divSpace">
+  <ol class="carousel-indicators">
+
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag("Netflix-Logo.png", class: "netflix_logo d-block w-100" ) %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag("amazon-logo.png", class: "amazon_logo d-block w-100" ) %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag("disney-logo.png", class: "disneyplus_logo d-block w-100" ) %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>
+
+<div class="stats">
+  <p>Genres: params[:results][:movies]</p>
+  <p>Directors: params[:results][:statistics][:directors]</p>
+  <p>Dates released:</p>
+</div>
+
+
+ @selected_movies = params[:recommendation_movie][:movie_id]
+    @selected_movies.each do |movie|
+      current_movie = Movie.find(movie)
+      @stats[:genres] << current_movie.genre.split(",")
+      @stats[:directors] << current_movie.director
+      @stats[:dates_released] << current_movie.date_released.to_i
+      @stats[:genres].flatten!
+    end
+
+@genres_and_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
+    @genre_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
+    @most_genre = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@genre_occurences.max)
+
+    @directors_and_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
+    @director_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
+    @most_director = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@director_occurences)
