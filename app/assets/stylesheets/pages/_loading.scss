@@ -1,0 +1,155 @@
+// sass
+//Var
+//colors
+$colorArray: #354558 #625059 #905b5c #bd665e #eb7260
+$base: #E9E0D6
+$primary: #000000
+$accent: #ffffff
+$secondary: #a9a9a9
+$n: 5
+
+//mixins
+=fhover($color)
+  &:hover
+    transition: 350ms ease-in-out
+    color:  $color
+    transform: scale(1.4)
+=flex()
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: row
+  flex-wrap: wrap
+
+=center()
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+
+=aline()
+  top: 50%
+  transform: translateY(-50%)
+
+// reset
+*
+  margin: 0
+  box-sizing: border-box
+  padding: 0
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+h1,h2,h3,h4,h5,h6,a,p,span
+  padding-bottom: 0.714em !important
+  padding-top: 0.714em !important
+  text-transform: uppercase
+  letter-spacing: 0.1em
+  font-weight: 400
+  color: $accent
+  font-weight: bold
+  text-align: center
+
+footer
+  bottom: 0
+  right: 0
+  left: 0
+  margin: 0 auto
+  position: fixed
+  width: 100%
+  background: $base
+  text-align: center
+
+  .content
+    border-radius: 5px
+    +flex
+    justify-content: space-evenly
+    height: 80px
+    .bottom
+      padding: 0
+      margin: 0
+      top: 10%
+      .beat
+        color: red
+        animation: beat .30s infinite alternate
+
+    .top
+      font-size: 25px
+      .fa-twitter
+        +fhover(#55acee)
+      .fa-youtube
+        +fhover(#cd201f)
+      .fa-instagram
+        +fhover(#e4405f)
+      .fa-codepen
+        +fhover(#FFDD40)
+
+      a
+        padding: 10px
+      i
+        transition: 500ms ease-in-out
+
+
+body
+  background: $base
+  font-family: 'Raleway', sans-serif
+  text-align: center
+
+.noselect
+  user-select: none
+.artboard
+  width: 100%
+  height: 100%
+  +flex()
+  position: absolute
+
+
+.domino > div
+  border-radius: 8px
+  display: inline-flex
+  transform: rotate(45deg)
+  width: 50px
+  height: 50px
+  animation: domino-effect 2.4s infinite ease-in-out
+  @each $current-color in $colorArray
+      $i: index($colorArray, $current-color)
+      &:nth-child(#{$i})
+        background: $current-color
+        &:after
+          background: $current-color
+          animation-delay: #{0.60 * $i}s
+  @for $i from 1 through $n
+    &:nth-child(#{$i})
+      margin: 23px
+      animation-delay: #{0.60 * $i}s
+  &:after
+    content: ''
+    position: relative
+    top: 0px
+    left: -70px
+    opacity: 0
+    border-radius: 8px
+    width: 50px
+    height: 50px
+    animation:  illusion 2.4s infinite ease-in-out
+
+
+
+
+//animation
+@keyframes beat
+  to
+    transform: scale(1.4)
+@keyframes spin
+  to
+    transform: rotate(140deg)
+
+
+@keyframes domino-effect
+    20%,100%
+      transform: rotate(135deg)
+
+@keyframes illusion
+    0%, 25%
+      opacity: 1
+
+    26.10%, 33.33%, 100%
+      opacity: 0
