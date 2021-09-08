@@ -66,11 +66,11 @@ class RecommendationMoviesController < ApplicationController
       counted_service = @service_source_ids.inject(Hash.new(0)) { |total, id| total[id] += 1; total }
 
       # Get streaming service with most hits
-      if counted_service.nil?
-        recommendation_service = "HBO MAX"
-      else
-        recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
-      end
+
+      recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
+
+      recommendation_service = 'HBO MAX' if recommendation_service.nil?
+
       # Which streaming service has the most hits
       @recommendation_movie = RecommendationMovie.new(network: recommendation_service)
       statistics = stats # method to get the year, director and genres
