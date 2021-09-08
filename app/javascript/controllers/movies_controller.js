@@ -7,12 +7,8 @@ export default class extends Controller {
   countMovies() {
     let selected = document.querySelectorAll(".hide-checkbox:checked");
     let already_selected = this.alreadyConnectedTarget.value.split(" ").length;
-    // console.log(selected.length + already_selected);
+    console.log(selected.length + already_selected);
     this.accuracyBar.animate((selected.length + already_selected) / 9);
-
-    // if (this.accuracyBar.value() >= 0.888889) {
-    //   this.accuracyBar.setText("Done");
-    // }
   }
 
   connect() {
@@ -21,6 +17,7 @@ export default class extends Controller {
 
     let already_selected = this.alreadyConnectedTarget.value;
 
+    console.log(already_selected);
     this.accuracyBar = new ProgressBar.Line("#accuracy-meter", {
       strokeWidth: 2,
       easing: "easeInOut",
@@ -34,7 +31,7 @@ export default class extends Controller {
       },
     });
 
-    this.accuracyBar.animate(already_selected.split(" ").length / 12);
+    this.accuracyBar.animate(already_selected.split(" ").length / 9);
 
     this.element.querySelectorAll(".image-card").forEach((div) => {
       let id = +div.querySelector("input").value;

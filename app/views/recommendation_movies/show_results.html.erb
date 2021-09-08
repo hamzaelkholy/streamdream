@@ -42,19 +42,22 @@
 </div>
 
 
- @selected_movies = params[:recommendation_movie][:movie_id]
-    @selected_movies.each do |movie|
-      current_movie = Movie.find(movie)
-      @stats[:genres] << current_movie.genre.split(",")
-      @stats[:directors] << current_movie.director
-      @stats[:dates_released] << current_movie.date_released.to_i
-      @stats[:genres].flatten!
-    end
-
-@genres_and_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
-    @genre_occurences = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
-    @most_genre = @stats[:genres].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@genre_occurences.max)
-
-    @directors_and_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}
-    @director_occurences = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.values
-    @most_director = @stats[:directors].inject(Hash.new(0)) { |total, e| total[e] += 1 ;total}.key(@director_occurences)
+  <h2>Our recommended streaming service for you:</h2>
+  <%# Genres %>
+  <h3><%= params[:results][:streaming_service] %></h3>
+  <% genres = params[:results][:statistics][:genres].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
+  <% genres.each do |key, value| %>
+    <p><%= key %></p>
+    <p><%= value %> times</p>
+  <% end %>
+  <%# Directors %>
+  <% directors = params[:results][:statistics][:directors].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
+  <% directors.each do |key, value| %>
+    <p><%= key %></p>
+    <p><%= value %> times</p>
+  <% end %>
+  <%# Your selected movies %>
+  <% movies = params[:results][:movies] %>
+  <% movies.each do |movie| %>
+    <p><%= Movie.find(movie).title %></p>
+  <% end %>

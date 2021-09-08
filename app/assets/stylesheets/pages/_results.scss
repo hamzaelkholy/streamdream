@@ -1,10 +1,28 @@
+.divMargin{
+  margin: 50px;
+}
+
+p.breakAfter{
+  margin-bottom:1.5em;
+  font-family: "Helvetica";
+}
+
+h1{
+  font-size: 3.5rem;
+  font-family: "Helvetica";
+}
+
+p{
+  font-family: "Helvetica";
+}
+
 .netflix_logo {
   width: 60vw;
 }
 
 
 .amazon_logo {
-
+  width: 60vw;
 }
 
 .disneyplus_logo {
@@ -13,4 +31,8 @@
 
 .result_page{
   text-align: center;
+}
+
+.divSpace{
+  margin:1.5em;
 }
