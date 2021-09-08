@@ -1,13 +1,20 @@
 <div class="result_page" class=”breakAfter”>
   <h2>Our recommended streaming service for you:</h2>
+  <%# Genres %>
   <h3><%= params[:results][:streaming_service] %></h3>
   <% genres = params[:results][:statistics][:genres].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
   <% genres.each do |key, value| %>
     <p><%= key %></p>
     <p><%= value %> times</p>
   <% end %>
-  <div class="stats">
-    <p>Genres:</p>
-    <p>Directors:</p>
-    <p>Dates released:</p>
-  </div>
+  <%# Directors %>
+  <% directors = params[:results][:statistics][:directors].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
+  <% directors.each do |key, value| %>
+    <p><%= key %></p>
+    <p><%= value %> times</p>
+  <% end %>
+  <%# Your selected movies %>
+  <% movies = params[:results][:movies] %>
+  <% movies.each do |movie| %>
+    <p><%= Movie.find(movie).title %></p>
+  <% end %>
