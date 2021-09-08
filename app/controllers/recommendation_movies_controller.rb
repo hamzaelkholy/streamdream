@@ -156,7 +156,6 @@ class RecommendationMoviesController < ApplicationController
       dates_released: []
     }
 
-    @selected_movies = params[:recommendation_movie][:movie_id]
     @selected_movies.each do |movie|
       current_movie = Movie.find(movie)
       @stats[:genres] << current_movie.genre.split(",")
