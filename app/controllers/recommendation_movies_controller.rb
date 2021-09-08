@@ -69,7 +69,6 @@ class RecommendationMoviesController < ApplicationController
       # Which streaming service has the most hits
       @recommendation_movie = RecommendationMovie.new(network: recommendation_service)
       statistics = stats # method to get the year, director and genres
-      raise
       redirect_to results_path(results: { streaming_services: counted_service, movies: @selected_movies, statistics: statistics })
     else
       @results = []
@@ -90,7 +89,6 @@ class RecommendationMoviesController < ApplicationController
 
   def show_results
     @recommendation_movies = current_user.recommendation_movies
-    stats
   end
 
   private
