@@ -69,8 +69,8 @@ class RecommendationMoviesController < ApplicationController
       recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
       # Which streaming service has the most hits
       @recommendation_movie = RecommendationMovie.new(network: recommendation_service)
-      stats # method to get the year, director and genres
-      redirect_to results_path(results: { streaming_services: counted_service, movies: @selected_movies, statistics: @stats })
+      statistics = stats # method to get the year, director and genres
+      redirect_to results_path(results: { streaming_service: recommendation_service, movies: @selected_movies, statistics: statistics })
     else
       @results = []
       # Find the movie id's and make them integer
@@ -148,15 +148,12 @@ class RecommendationMoviesController < ApplicationController
     @movies.flatten!
   end
 
-
-
   def stats
     @stats = {
       genres: [],
       directors: [],
       dates_released: []
     }
-    # @selected_movies = params[:results][:movies]
     @selected_movies.each do |movie|
       current_movie = Movie.find(movie)
       @stats[:genres] << current_movie.genre.split(",")
