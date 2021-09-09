@@ -66,11 +66,11 @@ class RecommendationMoviesController < ApplicationController
       counted_service = @service_source_ids.inject(Hash.new(0)) { |total, id| total[id] += 1; total }
 
       # Get streaming service with most hits
-      if counted_service.nil?
-        recommendation_service = "HBO MAX"
-      else
-        recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
-      end
+
+      recommendation_service = @stream_hash.key(counted_service.max_by { |_, v| v }[0])
+
+      recommendation_service = 'HBO MAX' if recommendation_service.nil?
+
       # Which streaming service has the most hits
       @recommendation_movie = RecommendationMovie.new(network: recommendation_service)
       statistics = stats # method to get the year, director and genres
@@ -115,7 +115,7 @@ class RecommendationMoviesController < ApplicationController
   def get_watchmode_id(selected_movie)
     uri = URI("https://api.watchmode.com/v1/search/?apiKey=#{ENV['WATCHMODE_API_KEY']}&search_field=imdb_id&search_value=#{selected_movie}")
     json = Net::HTTP.get(uri)
-    result_watchmode_search = JSON(json)
+    JSON(json)
   end
 
   def create_movie(results)

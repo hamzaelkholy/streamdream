@@ -69,9 +69,15 @@
   width: 50%;
   height: auto;
 }
+.homepage-illustration-steps {
+  // min-width: 100px;
+  width: 100%;
+  // height: auto;
+}
 
 .homepage-service {
   height: 50vh;
+  margin: 0 auto;
 }
 
 .homepage-how-to {
@@ -83,16 +89,30 @@
   margin: 2rem;
 }
 
-.homepage-content {
+.homepage-about-us {
+  text-align: left;
+  width: 500px;
+  margin-top: 50px;
+  margin: 1rem 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  p {
+    line-height: 2;
+    margin-top: -160px;
+    font-size: 17px;
+  }
+}
+.full-vh {
+  height: 100vh;
+}
+
+.homepage-content {
   width: 230px;
   margin: 1rem 0;
-  i {
-    color: $white;
-    font-size: 1rem;
-    padding-right: 0.8rem;
-  }
   // h3 {
   // }
+}
+.margin-under {
+  margin-bottom: 30px;
 }
