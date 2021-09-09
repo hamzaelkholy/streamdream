@@ -3,23 +3,31 @@
   <div class="results" data-controller='progress' data-params="<%=params[:results].to_json%>">
     <%# Genres %>
     <h3><%= params[:results][:streaming_service] %></h3>
-    <% genres = params[:results][:statistics][:genres].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
-    <% genres.each do |key, value| %>
-      <p><%= key %></p>
-      <p><%= value %> times</p>
-    <% end %>
     <%# Directors %>
-    <% directors = params[:results][:statistics][:directors].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
-    <% directors.each do |key, value| %>
-      <p><%= key %></p>
-      <p><%= value %> times</p>
-    <% end %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Times Selected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% directors = params[:results][:statistics][:directors].inject(Hash.new(0)) { |total, id| total[id] += 1; total } %>
+        <% directors.each do |key, value| %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= key %></td>
+            <td><%= value %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <%# Your selected movies %>
     <% movies = params[:results][:movies] %>
     <% movies.each do |movie| %>
       <p><%= Movie.find(movie).title %></p>
     <% end %>
   </div>
-  <div class="progress sd-progress">
-  </div>
+  <div class="progress sd-progress genres"></div>
 </div>
