@@ -1,9 +1,8 @@
 .sd-progress {
-  border-radius: 1.5rem;
   overflow: visible;
-  height: 3rem;
+  height: 1.5rem;
 
-  width: 80%;
+  width: 69%;
 
   margin: 2rem;
   div {
@@ -12,13 +11,15 @@
 }
 
 .progress-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-wrap: wrap;
 }
 
 .progress-label {
-  transform: translateY(-55px) rotateZ(-40deg);
+  transform: translateY(-48px) rotateZ(-40deg);
   font-size: 0.8rem;
+  width: 100px;
+  text-align: left;
 }

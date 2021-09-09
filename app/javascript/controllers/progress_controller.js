@@ -4,11 +4,15 @@ export default class extends Controller {
   static targets = ["output"];
 
   getRandomColor() {
-    let letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
+    let hues = [220, 348];
+    let color = `hsl(${hues[Math.floor(Math.random() * hues.length)]}, ${
+      Math.random() * 80 + 30
+    }%, ${Math.random() * 60 + 30}%)`;
+    // let letters = "0123456789ABCDEF";
+    // let color = "#";
+    // for (let i = 0; i < 6; i++) {
+    //   color += letters[Math.floor(Math.random() * 16)];
+    // }
     return color;
   }
 
@@ -35,13 +39,15 @@ export default class extends Controller {
   createProgressBar(statistic, container) {
     // Get count of statistic
     const total = statistic.length;
-    console.log("total:", total);
+    // console.log("total:", total);
     // Create object to hold count of statistic
     const count = {};
+    // Count occurence of key and store in object
     for (const num of statistic) {
       count[num] = count[num] ? count[num] + 1 : 1;
     }
-    console.log("count:", count);
+    // console.log("count:", count);
+
     for (const key in count) {
       // Get percentage of total
       const percent = (count[key] / total) * 100;
