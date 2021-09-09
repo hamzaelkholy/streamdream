@@ -1,27 +1,6 @@
-// .cards-list{
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   width: 100%;
-// }
-
 .glass-container {
   background-color: rgba($color: $off-black, $alpha: 0.2);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   border: solid 1px $off-pink;
   border-radius: 50px;
 }
-
-// Refactored classes to homepage classes
-
-// .card-how-to-content {
-//   display: flex;
-//   i {
-//     color: $off-black;
-//     font-size: 30px;
-//   }
-// }
-
-// .card-description {
-//   padding-left: 10px;
-// }
