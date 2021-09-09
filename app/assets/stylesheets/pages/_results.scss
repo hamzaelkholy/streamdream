@@ -1,38 +1,25 @@
-.divMargin{
-  margin: 50px;
+.results {
 }
-
-// p.breakAfter{
-//   margin-bottom:1.5em;
-//   font-family: "Helvetica";
-// }
-
-// h1{
-//   font-size: 3.5rem;
-//   font-family: "Helvetica";
-// }
-
-// p{
-//   font-family: "Helvetica";
-// }
-
-.netflix_logo {
-  width: 60vw;
-}
-
-
-.amazon_logo {
-  width: 60vw;
-}
-
-// .disneyplus_logo {
-
-// }
-
-.result_page{
+#title {
+  font-family: $headers-font;
+  font-size: 2rem;
+  font-weight: 500;
   text-align: center;
+
+  color: $white;
 }
 
-.divSpace{
-  margin:1.5em;
+.streaming-service {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 30vh;
+}
+
+.sd-carousel {
+  height: auto;
+  width: 250px;
+  border-radius: 20px;
+  overflow: hidden;
 }

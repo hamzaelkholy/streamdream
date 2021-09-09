@@ -4,8 +4,11 @@ export default class extends Controller {
   static targets = ["output"];
 
   getRandomColor() {
-    let color = `hsl(220, ${Math.random() * 70 + 40}%,
-    ${Math.random() * 70 + 40}%)`;
+    let letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
     return color;
   }
 
