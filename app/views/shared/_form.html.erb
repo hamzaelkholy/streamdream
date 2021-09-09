@@ -1,23 +1,25 @@
 <div data-controller="movies" data-movies-url="<%= movies_sample.map {|movie| { id: movie.id, url: movie.poster_url, title: movie.title } }.to_json %>">
-  <%= simple_form_for(recommendation_movie) do |f| %>
-    <%= f.association :movie,
-                        :include_hidden => false,
-                        as: :check_boxes,
-                        item_wrapper_tag: 'div',
-                        item_wrapper_class: 'image-card',
-                        collection_wrapper_tag: 'div',
-                        collection_wrapper_class: 'form-wrapper',
-                        collection: movies_sample,
-                        input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards", action: "input->movies#countMovies" } },
-                        label: 'Choose your preferences'
-                        %>
-    <%# <% if @selected_movies.present? %>
-    <%= f.input :already_selected,
-                          as: :hidden,
-                          input_html: { value: @selected_movies, data: { 'movies-target' => 'alreadyConnected' } } %>
-    <%# <% end %>
-    <%= f.button :submit, 'Next', class: 'btn-primary' %>
-  <% end %>
+  <div class="card-grid">
+    <%= simple_form_for(recommendation_movie) do |f| %>
+      <%= f.association :movie,
+                          :include_hidden => false,
+                          as: :check_boxes,
+                          item_wrapper_tag: 'div',
+                          item_wrapper_class: 'image-card',
+                          collection_wrapper_tag: 'div',
+                          collection_wrapper_class: 'form-wrapper',
+                          collection: movies_sample,
+                          input_html: { class: 'hide-checkbox', data: { 'movies-target' => "cards", action: "input->movies#countMovies" } },
+                          label: 'Choose your preferences'
+                          %>
+      <%# <% if @selected_movies.present? %>
+      <%= f.input :already_selected,
+                            as: :hidden,
+                            input_html: { value: @selected_movies, data: { 'movies-target' => 'alreadyConnected' } } %>
+      <%# <% end %>
+      <%= f.button :submit, 'Next', class: 'btn-primary' %>
+    <% end %>
+  </div>
   <% movies_sample.each do |movie| %>
     <%= render 'shared/popup', movie: movie %>
   <% end %>
