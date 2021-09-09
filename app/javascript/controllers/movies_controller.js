@@ -7,8 +7,16 @@ export default class extends Controller {
   countMovies() {
     let selected = document.querySelectorAll(".hide-checkbox:checked");
     let already_selected = this.alreadyConnectedTarget.value.split(" ").length;
-    console.log(selected.length + already_selected);
-    this.accuracyBar.animate((selected.length + already_selected) / 9);
+
+    this.accuracyBar.animate((selected.length + already_selected) / 8);
+
+    console.log(
+      "___Update___",
+      "selected: ",
+      selected.length,
+      "already_selected: ",
+      already_selected
+    );
   }
 
   connect() {
@@ -16,8 +24,8 @@ export default class extends Controller {
     const movieArray = JSON.parse(this.element.dataset.moviesUrl);
 
     let already_selected = this.alreadyConnectedTarget.value;
-
-    console.log(already_selected);
+    console.log("___Connected___", "already_selected: ", already_selected);
+    console.log(already_selected === new String(""));
     this.accuracyBar = new ProgressBar.Line("#accuracy-meter", {
       strokeWidth: 2,
       easing: "easeInOut",
@@ -31,8 +39,12 @@ export default class extends Controller {
       },
     });
 
-    this.accuracyBar.animate(already_selected.split(" ").length / 9);
-
+    if (already_selected === "") {
+      already_selected = 0;
+    } else {
+      this.accuracyBar.animate(already_selected.split(" ").length / 8);
+    }
+    console.log(already_selected === "");
     this.element.querySelectorAll(".image-card").forEach((div) => {
       let id = +div.querySelector("input").value;
       // Get id of movie
