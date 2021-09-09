@@ -1,0 +1,18 @@
+.sd-progress {
+  border-radius: 20px !important;
+  overflow: visible;
+  text-align: center;
+  div {
+    overflow: visible;
+  }
+}
+.progress-label {
+  transform: translateY(-15px);
+  // display: none;
+  opacity: 0;
+}
+
+.sd-progress:hover .progress-label {
+  // display: block;
+  opacity: 1;
+}
