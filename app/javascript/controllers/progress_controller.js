@@ -5,7 +5,7 @@ export default class extends Controller {
 
   getRandomColor() {
     let color = `hsl(220, ${Math.random() * 70 + 40}%,
-    ${Math.random() * 70 + 30}%)`;
+    ${Math.random() * 70 + 40}%)`;
     return color;
   }
 
@@ -35,11 +35,10 @@ export default class extends Controller {
       // Get percentage of total
       const percent = totalGenres / countGenres[key];
 
-      const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key}</p></div>`;
+      const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key}</p> ${percent}%</div>`;
       // Insert progress bar
       progressContainer.insertAdjacentHTML("beforeend", progressBar);
-      console.log(`${key}: ${countGenres[key]}`);
+      // console.log(`${key}: ${countGenres[key]}`);
     }
-    console.log(progressContainer);
   }
 }
