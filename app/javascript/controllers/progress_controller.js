@@ -26,8 +26,6 @@ export default class extends Controller {
     const genresContainer = document.querySelector(".progress");
     this.createProgressBar(formatted_genres, genresContainer);
 
-    console.log("Directors");
-
     // const directors = params.statistics.directors;
     // // Get director container
     // const directorsContainer = document.querySelector(".directors");
@@ -37,17 +35,16 @@ export default class extends Controller {
   createProgressBar(statistic, container) {
     // Get count of statistic
     const total = statistic.length;
-
+    console.log("total:", total);
     // Create object to hold count of statistic
     const count = {};
     for (const num of statistic) {
       count[num] = count[num] ? count[num] + 1 : 1;
     }
-
+    console.log("count:", count);
     for (const key in count) {
       // Get percentage of total
-      const percent = total / count[key];
-      console.log(percent);
+      const percent = (count[key] / total) * 100;
 
       const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key} ${Math.round(
         percent
