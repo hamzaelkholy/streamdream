@@ -1,38 +1,73 @@
-.divMargin{
-  margin: 50px;
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#title {
+  font-family: $headers-font;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+
+  color: $white;
 }
 
-// p.breakAfter{
-//   margin-bottom:1.5em;
-//   font-family: "Helvetica";
-// }
+.streaming-service {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-// h1{
-//   font-size: 3.5rem;
-//   font-family: "Helvetica";
-// }
+  height: 30vh;
 
-// p{
-//   font-family: "Helvetica";
-// }
-
-.netflix_logo {
-  width: 60vw;
+  h1 {
+    animation: animateBg 4s linear infinite;
+    background-image: linear-gradient(
+      45deg,
+      #6e96e6,
+      #bf1336,
+      #f3a076,
+      #6e96e6,
+      #bf1336,
+      #f3a076
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes animateBg {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
 }
 
-
-.amazon_logo {
-  width: 60vw;
+.results-content {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
 }
 
-// .disneyplus_logo {
+.directors {
+  width: 50%;
+}
 
-// }
+.movies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.result_page{
+tr {
   text-align: center;
 }
 
-.divSpace{
-  margin:1.5em;
+.sd-carousel {
+  height: auto;
+  width: 300px;
+  border-radius: 20px;
+  overflow: hidden;
 }

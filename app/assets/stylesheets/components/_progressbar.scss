@@ -1,7 +1,14 @@
 .sd-progress {
   border-radius: 1.5rem;
-  // overflow: visible;
+  overflow: visible;
   height: 3rem;
+
+  width: 80%;
+
+  margin: 2rem;
+  div {
+    overflow: visible;
+  }
 }
 
 .progress-bar {
@@ -10,7 +17,8 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
 .progress-label {
-  text-overflow: clip;
-  font-size: 0.7rem;
+  transform: translateY(-55px) rotateZ(-40deg);
+  font-size: 0.8rem;
 }

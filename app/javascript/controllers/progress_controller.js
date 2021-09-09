@@ -4,8 +4,11 @@ export default class extends Controller {
   static targets = ["output"];
 
   getRandomColor() {
-    let color = `hsl(220, ${Math.random() * 70 + 40}%,
-    ${Math.random() * 50 + 20}%)`;
+    let letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
     return color;
   }
 
@@ -20,7 +23,7 @@ export default class extends Controller {
       formatted_genres.push(element.replace(/\s/g, ""));
     });
     // Get genre container
-    const genresContainer = document.querySelector(".genres");
+    const genresContainer = document.querySelector(".progress");
     this.createProgressBar(formatted_genres, genresContainer);
 
     console.log("Directors");
@@ -46,7 +49,9 @@ export default class extends Controller {
       const percent = total / count[key];
       console.log(percent);
 
-      const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key}</p><p class="progress-label" style="margin: 0">${percent}%</p></div>`;
+      const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key} ${Math.round(
+        percent
+      )}%</p></div>`;
       // Insert progress bar
       container.insertAdjacentHTML("beforeend", progressBar);
       // console.log(`${key}: ${countGenres[key]}`);
