@@ -45,3 +45,24 @@
   margin: 1rem;
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 540px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .card-grid {
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

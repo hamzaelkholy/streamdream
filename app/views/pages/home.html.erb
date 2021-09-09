@@ -21,7 +21,7 @@
   </div>
   <div class="homepage-info" id="homepage-info">
     <div class="homepage-about d-flex justify-content-end" id="homepage-about">
-      <div class="homepage-about-us">
+      <div class="homepage-about-us full-vh">
         <h2 id="about">Why use <br>
           streamdream?</h2>
         <div class="card-description">
@@ -33,33 +33,39 @@
         </div>
       </div>
     </div>
-    <div class="homepage-service" id="homepage-service">
+    <div class="homepage-service full-vh" id="homepage-service">
       <h2 class="margin-under"id="service">How it works</h2>
       <div class="d-flex justify-content-around">
         <div class="homepage-content">
           <%= image_tag "sally-one.png", alt: "streamdream-img", class: 'homepage-illustration-steps' %>
           <div class="card-description">
-            <h3>1. pick preferences</h3>
-            <p>Choose your favourite movies,
-              no matter the style</p>
+            <h3 class="text-center">1. Pick movies</h3>
+            <p class="text-center">Choose your favourite movies,
+              no matter the genre.</p>
           </div>
         </div>
         <div class="homepage-content">
           <%= image_tag "sally-two.png", alt: "streamdream-img", class: 'homepage-illustration-steps' %>
           <div class="card-description">
-            <h3>2. Program calculates</h3>
-            <p>Depending on what you chose,
-              we calculate your optimal match</p>
+            <h3 class="text-center">2. App configurations</h3>
+            <p class="text-center">The app runs computations and scans
+              streaming services to find your optimal match</p>
           </div>
         </div>
         <div class="homepage-content">
           <%= image_tag "sally-three.png", alt: "streamdream-img", class: 'homepage-illustration-steps' %>
           <div class="card-description">
-            <h3>3. Enjoy customized streaming service</h3>
-            <p>Grab some popcorn,
+            <h3 class="text-center">3. Enjoy customized streaming service</h3>
+            <p class="text-center">Grab some popcorn,
               and enjoy your evening</p>
           </div>
         </div>
+      </div>
+      <div class="text-center">
+        <br>
+        <br>
+        <br>
+        <%= link_to "Give it a try", new_recommendation_movie_path, class: "btn btn-primary"%>
       </div>
     </div>
   </div>
