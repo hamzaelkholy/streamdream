@@ -5,7 +5,7 @@ export default class extends Controller {
 
   getRandomColor() {
     let color = `hsl(220, ${Math.random() * 70 + 40}%,
-    ${Math.random() * 70 + 40}%)`;
+    ${Math.random() * 50 + 20}%)`;
     return color;
   }
 
@@ -19,25 +19,36 @@ export default class extends Controller {
     genres.forEach((element) => {
       formatted_genres.push(element.replace(/\s/g, ""));
     });
+    // Get genre container
+    const genresContainer = document.querySelector(".genres");
+    this.createProgressBar(formatted_genres, genresContainer);
 
-    // Get count of genres
-    const totalGenres = genres.length;
+    console.log("Directors");
 
-    // Create object to hold count of genres
-    const countGenres = {};
-    for (const num of formatted_genres) {
-      countGenres[num] = countGenres[num] ? countGenres[num] + 1 : 1;
+    // const directors = params.statistics.directors;
+    // // Get director container
+    // const directorsContainer = document.querySelector(".directors");
+    // this.createProgressBar(directors, directorsContainer);
+  }
+
+  createProgressBar(statistic, container) {
+    // Get count of statistic
+    const total = statistic.length;
+
+    // Create object to hold count of statistic
+    const count = {};
+    for (const num of statistic) {
+      count[num] = count[num] ? count[num] + 1 : 1;
     }
 
-    // Get progressbar container
-    const progressContainer = document.querySelector(".progress");
-    for (const key in countGenres) {
+    for (const key in count) {
       // Get percentage of total
-      const percent = totalGenres / countGenres[key];
+      const percent = total / count[key];
+      console.log(percent);
 
-      const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key}</p> ${percent}%</div>`;
+      const progressBar = `<div class="progress-bar" role="progressbar" style="width: ${percent}%; background-color: ${this.getRandomColor()}" aria-valuemin="0" aria-valuemax="100"><p class="progress-label">${key}</p><p class="progress-label" style="margin: 0">${percent}%</p></div>`;
       // Insert progress bar
-      progressContainer.insertAdjacentHTML("beforeend", progressBar);
+      container.insertAdjacentHTML("beforeend", progressBar);
       // console.log(`${key}: ${countGenres[key]}`);
     }
   }
