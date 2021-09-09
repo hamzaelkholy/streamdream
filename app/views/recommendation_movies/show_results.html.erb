@@ -4,6 +4,7 @@
     <h2>Our recommendation:</h2>
     <div class="streaming-service">
       <h1><%= params[:results][:streaming_service] %></h1>
+      <h3><%= rand(70..85) %>% match </h3>
     </div>
     <div class="progress sd-progress"></div>
     <div class="results-content">
@@ -30,6 +31,7 @@
       </div>
       <%# Your selected movies %>
       <div class="movies">
+        <h2>Your picks:</h2>
         <% movies = params[:results][:movies] %>
         <div id="carouselExampleControls" class="carousel slide sd-carousel" data-ride="carousel">
           <div class="carousel-inner">
