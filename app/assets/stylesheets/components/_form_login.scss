@@ -33,6 +33,12 @@
   padding: 1em;
   font-family: $body-font;
   font-size: 0.8em;
+  a {
+    color: $white;
+    &:hover{
+      color: $blue
+    }
+  }
 }
 
 .form-inputs {
