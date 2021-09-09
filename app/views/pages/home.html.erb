@@ -22,20 +22,25 @@
   <div class="homepage-info" id="homepage-info">
     <div class="homepage-about d-flex justify-content-end" id="homepage-about">
       <div class="homepage-about-us full-vh">
-        <h2 id="about">Why use <br>
-          streamdream?</h2>
-        <div class="card-description">
-          <p>Everyone loves movies. Nobody likes buying them. Chances are, you’ve subscribed to at least one new streaming platform this year.
-            However, most people subscribe to multiple streaming platforms to gain access to a wider variety.
-            In total, we've spent over $67 billion on movies in 2020, almost $45 per household. It's not necessary.
-            StreamDream is on a mission to make your streams come true! we mean dreams...
-          </p>
+        <div class='d-flex'>
+          <div class="stream-bot">
+            <%= image_tag 'stream-bot.png', alt: 'stream bot logo', class: 'homepage-illustration' %>
+          </div>
+          <div class="card-description">
+            <h2 id="about">Why use <br>
+              streamdream?</h2>
+            <p>Everyone loves movies. Nobody likes buying them. Chances are, you’ve subscribed to at least one new streaming platform this year.
+              However, most people subscribe to multiple streaming platforms to gain access to a wider variety.
+              In total, we've spent over $67 billion on movies in 2020, almost $45 per household. It's not necessary.
+              StreamDream is on a mission to make your streams come true! we mean dreams...
+            </p>
+          </div>
         </div>
       </div>
     </div>
     <div class="homepage-service full-vh" id="homepage-service">
       <h2 class="margin-under"id="service">How it works</h2>
-      <div class="d-flex justify-content-around">
+      <div class="homepage-service-content">
         <div class="homepage-content">
           <%= image_tag "sally-one.png", alt: "streamdream-img", class: 'homepage-illustration-steps' %>
           <div class="card-description">
@@ -62,12 +67,8 @@
         </div>
       </div>
       <div class="text-center">
-        <br>
-        <br>
-        <br>
-        <%= link_to "Give it a try", new_recommendation_movie_path, class: "btn btn-primary"%>
+        <%= link_to "Get Started", new_recommendation_movie_path, class: "btn btn-primary"%>
       </div>
     </div>
   </div>
-</div>
 </div>
