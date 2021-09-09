@@ -69,6 +69,11 @@
   width: 50%;
   height: auto;
 }
+.homepage-illustration-steps {
+  // min-width: 100px;
+  width: 100%;
+  height: auto;
+}
 
 .homepage-service {
   height: 50vh;
@@ -83,16 +88,23 @@
   margin: 2rem;
 }
 
+.homepage-about-us {
+  text-align: left;
+  width: 500px;
+  margin-top: 50px;
+  margin: 1rem 0;
+}
+// .homepage-about {
+//   display: flex;
+//   align-items: r;
+// }
+
 .homepage-content {
-  display: flex;
-  justify-content: center;
   width: 230px;
   margin: 1rem 0;
-  i {
-    color: $white;
-    font-size: 1rem;
-    padding-right: 0.8rem;
-  }
   // h3 {
   // }
+}
+.margin-under {
+  margin-bottom: 30px;
 }
