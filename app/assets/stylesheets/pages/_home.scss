@@ -122,11 +122,13 @@
   }
 }
 
+#service {
+  font-size: 3rem;
+}
+
 .homepage-content {
-  width: 230px;
   margin: 1rem 0;
-  // h3 {
-  // }
+  width: 300px;
 }
 .margin-under {
   margin-bottom: 30px;
@@ -134,7 +136,8 @@
 
 .homepage-service-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 @media screen and (max-width: 560px) {
