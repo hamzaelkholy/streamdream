@@ -24,6 +24,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
   <body>
+    <%# making sure navbar is only rendered on specific pages %>
     <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(new_user_password_path) || current_page?(new_recommendation_movie_path) %>
       <%= render 'shared/navbar' %>
     <% end %>
