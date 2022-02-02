@@ -131,23 +131,24 @@ class RecommendationMoviesController < ApplicationController
 
         omdb_api = URI.open(omdb_url).string
         omdb_json = JSON.parse(omdb_api)
-
-        # Create movie object
-        @movies << Movie.create!(
-          title: omdb_json['Title'],
-          genre: omdb_json['Genre'],
-          date_released: omdb_json['Year'],
-          director: omdb_json['Director'],
-          description: omdb_json['Plot'],
-          poster_url: omdb_json["Poster"],
-          imdb_id: omdb_json["imdbID"],
-          rating: omdb_json['imdbRating'].to_i
-        )
+        # Create movie object + unless statement so that it doesn't save add nils to the seed
+        unless (omdb_json['Title'] == "N/A" || omdb_json['Title'].nil?) || (omdb_json['Genre'] == "N/A" || omdb_json['Genre'].nil?) || (omdb_json['Year'] == "N/A" || omdb_json['Year'].nil?) || (omdb_json['Director'] == "N/A" || omdb_json['Director'].nil?) || (omdb_json['Plot'] == "N/A" || omdb_json['Plot'].nil?) || (omdb_json['Poster'] == "N/A" || omdb_json['Poster'].nil?) || (omdb_json['imdbID'] == "N/A" || omdb_json['imdbID'].nil?) || (omdb_json['imdbRating'] == "N/A" || omdb_json['imdbRating'].nil?)
+          @movies << Movie.create!(
+            title: omdb_json['Title'],
+            genre: omdb_json['Genre'],
+            date_released: omdb_json['Year'],
+            director: omdb_json['Director'],
+            description: omdb_json['Plot'],
+            poster_url: omdb_json["Poster"],
+            imdb_id: omdb_json["imdbID"],
+            rating: omdb_json['imdbRating'].to_i
+          )
+        end
       else
         @movies << Movie.find_by(title: movie["Name"])
       end
     end
-    # Add 6 random movies
+    # Add 6 random movies to be displayed
     @movies << Movie.all.sample(6)
     @movies.flatten!
   end
